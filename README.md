@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public\images\logoAsimov.png" />
+  <img src="\images\logoAsimov.png" />
 </p>
 
 ------------------------------------------------------------------------------------------------------------
