@@ -5,7 +5,7 @@
 ------------------------------------------------------------------------------------------------------------
 
 # PRESENTATION DU PROJET : ASIMOV
-La Pharmacie Sauteuhz est notre 1er projet de groupe de 2ème année. Il a pour principal mission de créer une application web permettant à une pharmacie et leurs employés de gérer les clients ainsi que leurs ordonnances mais également les stocks de medicament prévus à la remise.
+L'application ASIMOV est un projet visant a réaliser un ENT de lycée.
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -26,4 +26,4 @@ __Gestion de la base de données__
 ------------------------------------------------------------------------------------------------------------
 
 # GROUPE
-Ce projet est présenté par [PORCU LORENZO](https://github.com/LorenzoPrc) et [GONDRE MACEO](https://github.com/Maceoggit)
+Ce projet est présenté par [PORCU LORENZO](https://github.com/LorenzoPrc), [GONDRE MACEO](https://github.com/Maceoggit) et [ZIDI KAMIL](https://github.com/Ka-2000)
