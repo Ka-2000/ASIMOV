@@ -1,0 +1,56 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>60</x><y>80</y><w>210</w><h>110</h></coordinates><panel_attributes>ELEVE
+-
+
+- Nom : string (40)
+- Prenom : string (40)
+- Age : integer (2)
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>520</y><w>210</w><h>70</h></coordinates><panel_attributes>MATIERE
+-
+
+- Nom : string (40)
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>40</y><w>210</w><h>120</h></coordinates><panel_attributes>PROFESSEUR
+-
+
+- Nom : string (40)
+- Prenom : string (40)
+- Rôle : string (40)
+- Matière : string (40)
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>540</y><w>210</w><h>70</h></coordinates><panel_attributes>CLASSE
+-
+
+- Nom : string (20)
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>300</y><w>210</w><h>70</h></coordinates><panel_attributes>NOTE
+-
+
+- Valeur : float (4)
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>130</y><w>160</w><h>250</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=0..n
+</panel_attributes><additional_attributes>10;10;90;10;90;220;140;220</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>360</y><w>180</w><h>230</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=0..n
+</panel_attributes><additional_attributes>160;200;10;200;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>180</y><w>50</w><h>380</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=0..n
+</panel_attributes><additional_attributes>10;360;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>150</y><w>50</w><h>390</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=0..n
+</panel_attributes><additional_attributes>10;370;10;10</additional_attributes></element></diagram>
