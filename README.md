@@ -26,4 +26,4 @@ __Gestion de la base de données__
 ------------------------------------------------------------------------------------------------------------
 
 # GROUPE
-Ce projet est présenté par [PORCU LORENZO](https://github.com/LorenzoPrc) et [GONDRE MACEO](https://github.com/MaceoggitL)
+Ce projet est présenté par [PORCU LORENZO](https://github.com/LorenzoPrc) et [GONDRE MACEO](https://github.com/Maceoggit)
