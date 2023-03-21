@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epoka Web</title>
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <style>
+
+        .container {
+
+            height: 100vh; /* Hauteur de la fenêtre d'affichage */
+            display: flex;
+            justify-content: center; /* Centre horizontalement */
+            align-items: center; /* Centre verticalement */
+        }
+
+        #blocCentral {
+
+            width: 400px; /* Largeur du bloc */
+            text-align: center; /* Centre le contenu du bloc */
+        }
+
+        #titre{
+
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        #messageErreur {
+
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+            border-radius: 0.25rem;
+            text-align: center;
+        }
+
+
+        form {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form div {
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        form label {
+
+            width: 120px; /* Largeur des labels */
+            text-align: right; /* Alignement des labels à droite */
+            margin-right: 10px; /* Marge à droite des labels */
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+
+            width: 200px; /* Largeur des champs de saisie */
+            padding: 5px; /* Espacement interne des champs de saisie */
+            border-radius: 5px; /* Coins arrondis des champs de saisie */
+            border: 1px solid #ccc; /* Bordure des champs de saisie */
+        }
+
+        button[type='submit'] {
+
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;  
+        }
+
+        button[type='submit']:hover {
+
+            background-color: #2d3135;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        button[type='submit']:active {
+
+            background-color: #343a40;
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <% if (typeof messageErreur !== 'undefined') { %>
+
+        <div id = "messageErreur" class = "alert alert-danger"><%= messageErreur %></div>
+      
+        <script>
+
+          setTimeout(function(){document.getElementById('messageErreur').style.display = 'none';}, 5000);
+
+        </script>
+      
+    <% } %>
+
+    <div class = "container">
+
+        <div id = "blocCentral">
+
+            <div id = "titre"> Connexion à l'espace de travail </div>
+            <br>
+
+            <form action="/accueil" method="POST" enctype="application/x-www-form-urlencoded" id="formulaire">
+
+                <div id = "pseudo">
+
+                    <label for = "pseudo"> Matricule : </label>
+                    <input type = "text" name = "matricule" id = "matricule" required>
+                </div>
+                
+                <div>
+
+                    <label for = "mdp"> Mot de passe : </label>
+                    <input type = "password" name = "mdp" id = "mdp" required>
+
+                </div>
+
+                <br>
+
+                <button type = 'submit'> Connexion </button>
+
+            </form>
+        
+        </div>
+
+    </div>
+
+</body>
+</html>

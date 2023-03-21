@@ -26,6 +26,7 @@ CREATE TABLE Eleve(
 CREATE TABLE Classe(
 
 	classe_Id INTEGER AUTO_INCREMENT NOT NULL,
+	classe_IdProfesseurPrincipal INTEGER NOT NULL,
 	classe_Nom VARCHAR(50) NOT NULL,
 	
 	PRIMARY KEY(classe_Id))engine=InnoDB;
@@ -80,6 +81,11 @@ ALTER TABLE Matiere
 
 ADD CONSTRAINT FK_MatiereProfesseur
 FOREIGN KEY(matiere_IdProfesseur) REFERENCES Professeur(professeur_Id);
+
+ALTER TABLE Classe
+
+ADD CONSTRAINT FK_ClasseProfesseurPrincipal
+FOREIGN KEY(classe_IdProfesseurPrincipal) REFERENCES Professeur(professeur_Id);
 
 
 
