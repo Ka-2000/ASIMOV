@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>60</x><y>80</y><w>210</w><h>110</h></coordinates><panel_attributes>ELEVE
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>60</x><y>80</y><w>210</w><h>110</h></coordinates><panel_attributes>ELEVE
 -
 
 - Nom : string (40)
@@ -15,7 +15,7 @@
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>40</y><w>210</w><h>120</h></coordinates><panel_attributes>PROFESSEUR
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>80</y><w>210</w><h>120</h></coordinates><panel_attributes>PROFESSEUR
 -
 
 - Nom : string (40)
@@ -25,15 +25,16 @@
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>540</y><w>210</w><h>70</h></coordinates><panel_attributes>CLASSE
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>340</y><w>210</w><h>90</h></coordinates><panel_attributes>CLASSE
 -
 
 - Nom : string (20)
+- Professeur Principal : string(20)
 
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>300</y><w>210</w><h>70</h></coordinates><panel_attributes>NOTE
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>520</y><w>210</w><h>70</h></coordinates><panel_attributes>NOTE
 -
 
 - Valeur : float (4)
@@ -41,20 +42,31 @@
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>130</y><w>160</w><h>250</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>180</y><w>50</w><h>360</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=0..n
-</panel_attributes><additional_attributes>10;10;90;10;90;220;140;220</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>360</y><w>180</w><h>230</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;340</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>540</y><w>410</w><h>50</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=0..n
-</panel_attributes><additional_attributes>160;200;10;200;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>180</y><w>50</w><h>380</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>390;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>180</y><w>170</w><h>240</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=0..n
-</panel_attributes><additional_attributes>10;360;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>150</y><w>50</w><h>390</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>150;210;10;210;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>190</y><w>50</w><h>350</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=0..n
-</panel_attributes><additional_attributes>10;370;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>100</y><w>410</w><h>50</h></coordinates><panel_attributes>lt=-
-m1=0..n
+</panel_attributes><additional_attributes>10;330;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>200</y><w>210</w><h>50</h></coordinates><panel_attributes>AFFECTATION
+-
 
-m2=0..n
-</panel_attributes><additional_attributes>10;20;390;20</additional_attributes></element></diagram>
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>240</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=1..1
+</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>120</y><w>200</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=1..1
+</panel_attributes><additional_attributes>10;80;10;20;180;20</additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>190</y><w>180</w><h>230</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=1..1
+</panel_attributes><additional_attributes>10;200;140;200;140;10</additional_attributes></element></diagram>
