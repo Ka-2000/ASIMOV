@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoka Web</title>
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <table>
+
+    <thead>
+
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Matière</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <% dataProfesseur.forEach(function(data){ %>
+
+        <form action = "/professeurs/modifierProfesseur/<%= data.professeur_Id %>" method = "POST" enctype = "application/x-www-form-urlencoded">
+
+          <td>
+
+            <label for = "nom"> Nom : </label>
+            <input type = "text" name = "nom" id = "nom" value = <%= data.professeur_Nom %>>
+
+          </td>
+
+          <td>
+
+            <label for = "prenom"> Prenom : </label>
+            <input type = "text" name = "prenom" id = "prenom" value = <%= data.professeur_Prenom %>>
+
+          </td>
+
+          <td>
+
+            <label for = "matiere"> Matière : </label>
+            <input type = "text" name = "matiere" id = "matiere" value = <%= data.professeur_Matiere %>>
+
+          </td>
+
+          <button type = "submit">
+
+            <div>Envoyer</div>
+
+          </button>
+
+        </form>
+
+      <% })%>
+
+    </tbody>
+
+  </table>
+
+</body>

@@ -39,37 +39,59 @@
 
 <body>
 
-    <div>
+  <div class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
 
-        <table>
+    <div class = "container-fluid">
 
-            <thead>
+      <ul class = "navbar-nav">
 
-                <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Matière</th>
-                </tr>
+        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/logout"> Déconnexion </a></li>
+        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Classes </a></li>
+        <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/professeurs"> Professeurs </a></li>
+          
+      </ul>
 
-            </thead>
-
-          <tbody>
-
-            <% dataProfesseur.forEach(function(data){ %>
-
-                <tr>
-                  <td><%= data.professeur_Nom %></td>
-                  <td><%= data.professeur_Prenom %></td>
-                  <td><%= data.professeur_Matiere %></td>
-                </tr>
-
-            <% })%>
-
-          </tbody>
-
-        </table>
+      <a class = "navbar-brand"> Principal </a>
 
     </div>
+    
+  </div>
+
+  <div>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Matière</th>
+          <th>Modification</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <% dataProfesseur.forEach(function(data){ %>
+
+          <tr>
+              
+            <td><%= data.professeur_Nom %></td>
+            <td><%= data.professeur_Prenom %></td>
+            <td><%= data.professeur_Matiere %></td>
+            <td><a href="http://localhost:3600/professeurs/modifierProfesseur/<%=data.professeur_Id%>"> Modifier </a></td>
+
+          </tr>
+
+        <% })%>
+
+      </tbody>
+
+    </table>
+
+  </div>
       
 </body>
 </html>

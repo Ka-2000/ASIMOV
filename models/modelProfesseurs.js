@@ -37,6 +37,52 @@ const Professeurs = {
 
             })
         })
+    },
+
+    async afficherUnProfesseur(req){
+
+        let id = req.params.id
+        let requeteSQL = "SELECT * FROM professeur WHERE professeur_Id = ?"
+
+        return new Promise((resolve, reject)=>{
+
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+
+                return resolve(lignes)
+
+            })
+        })
+    },
+
+    async modifierProfesseur(req){
+
+        let id = req.params.id
+        let nom = req.body.nom
+        let prenom = req.body.prenom
+        let matiere = req.body.matiere
+        
+        let requeteSQL = "UPDATE professeur SET professeur_Nom = ?, professeur_Prenom = ?, professeur_Matiere = ? WHERE professeur_Id = ?"
+        
+        return new Promise((resolve, reject)=>{
+
+            mysqlconnexion.query(requeteSQL, [nom, prenom, matiere, id], (err, lignes, champs) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+
+                return resolve(lignes)
+
+            })
+        })
     }
 }
 

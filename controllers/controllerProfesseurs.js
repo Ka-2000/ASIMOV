@@ -1,7 +1,7 @@
 const modelProfesseur = require('../models/modelProfesseurs');
 const cookieParser = require('cookie-parser')
 
-const controllerClasse = {
+const controllerProfesseur = {
 	
 	async affichageProfesseurs(req, res){
 
@@ -37,7 +37,50 @@ const controllerClasse = {
                 console.log(error)
             }
 		}
+	},
+
+    async affichageUnProfesseur(req, res){
+
+		try {
+
+			const data = await modelProfesseur.Professeurs.afficherUnProfesseur(req)
+
+			if(data){
+
+				res.render("modifierProfesseurs", {dataProfesseur: data})
+
+			}else{
+
+				res.render("modifierProfesseurs", {dataProfesseur: {} })
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
+    async modifierProfesseur(req, res){
+
+		try {
+
+			const data = await modelProfesseur.Professeurs.modifierProfesseur(req)
+
+			if(data){
+
+				res.redirect("/professeurs");
+
+			}else{
+
+				console.log("champs incorrects")
+				res.redirect("/professeurs/modifierProfesseur/" + req.params.id);
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
 	}
 }
 
-module.exports = controllerClasse
+module.exports = controllerProfesseur
