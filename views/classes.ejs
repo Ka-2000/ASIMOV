@@ -2,72 +2,72 @@
 <html lang="fr">
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epoka Web</title>
-    
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoka Web</title>
 
-    <style>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
 
-        table {
-          border-collapse: collapse;
-          width: 100%;
-        }
+  <style>
 
-        th, td {
-          text-align: left;
-          padding: 8px;
-        }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-        th {
-          background-color: #f2f2f2;
-        }
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
 
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
-        }
+      th {
+        background-color: #f2f2f2;
+      }
 
-        tr:hover {
-          background-color: #ddd;
-        }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
 
-    </style>
+      tr:hover {
+        background-color: #ddd;
+      }
+
+  </style>
 
 </head>
 
 <body>
 
-    <div>
+  <div>
 
-        <table>
+    <table>
 
-            <thead>
+        <thead>
 
-                <tr>
-                <th>Nom</th>
-                <th>Effectif</th>
-                </tr>
+            <tr>
+            <th>Nom</th>
+            <th>Effectif</th>
+            </tr>
 
-            </thead>
+        </thead>
 
-          <tbody>
+      <tbody>
 
-            <% dataClasse.forEach(function(data){ %>
+        <% dataClasse.forEach(function(data){ %>
 
-                <tr>
-                  <td><%= data.classe_Nom %></td>
-                  <td> A remplir</td>
-                </tr>
+            <tr>
+              <td><%= data.classe_Nom %></td>
+              <td> A remplir</td>
+            </tr>
 
-            <% })%>
+        <% })%>
 
-          </tbody>
+      </tbody>
 
-        </table>
+    </table>
 
-    </div>
+  </div>
       
 </body>
 </html>

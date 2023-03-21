@@ -5,8 +5,8 @@ const port = 3600
 
 const connexionRoutes = require('./routes/routesConnexion.js')
 const classeRoutes = require('./routes/routesClasse.js')
-// const paiementRoutes = require('./routes/routesPaiement.js')
-// const parametreRoutes = require('./routes/routesParametre.js')
+const professeurRoutes = require('./routes/routesProfesseur.js')
+
 const cookieParser = require('cookie-parser')
 
 let app = express()
@@ -23,8 +23,8 @@ app.listen(port, () => console.log('le serveur Asimov est prêt'));
 //Définition des routes
 app.use('/', connexionRoutes)
 app.use('/classes', classeRoutes)
-// app.use('/paiement', paiementRoutes)
-// app.use('/parametres', parametreRoutes)
+app.use('/professeurs', professeurRoutes)
+
 
 
 
