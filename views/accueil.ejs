@@ -4,11 +4,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> Accueil </title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
 <body>
 
+    <% if(dataProfesseur == 'Professeur'){%>
+
+        <div class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+
+            <div class = "container-fluid">
+    
+                <ul class = "navbar-nav">
+    
+                    <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/logout"> Déconnexion </a></li>
+                    <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Mes classes </a></li>
+
+                </ul>
+    
+                <a class = "navbar-brand"> Professeur </a>
+    
+            </div>
+            
+        </div>
+
+    <% } else { %>
+
+        <% if(dataProfesseur == 'Principal'){%>
+
+            <div class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+
+                <div class = "container-fluid">
+        
+                    <ul class = "navbar-nav">
+        
+                        <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/logout"> Déconnexion </a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Classes </a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/professeurs"> Professeurs </a></li>
+                        
+                    </ul>
+        
+                    <a class = "navbar-brand"> Principal </a>
+        
+                </div>
+                
+            </div>
+            
+        <% } else { %>
+
+            <div class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+
+                <div class = "container-fluid">
+        
+                    <ul class = "navbar-nav">
+        
+                        <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/logout"> Déconnexion </a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Mes classes </a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Ma classe principale </a></li>
+                        
+                    </ul>
+        
+                    <a class = "navbar-brand"> Professeur Principal </a>
+        
+                </div>
+                
+            </div>
+
+        <% } %>
+
+    <% } %>
+
     Bienvenue sur l'accueil
+
+    
     
 </body>
 </html>

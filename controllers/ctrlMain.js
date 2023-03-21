@@ -14,7 +14,7 @@ const controllerMain = {
 				
 				res.cookie('role', data[0].professeur_Role)
 				res.cookie('id', data[0].professeur_Id)
-				res.redirect("http://localhost:3600/accueil")
+				res.render("accueil", {dataProfesseur:data[0].professeur_Role})
 			
 			}else{
 
