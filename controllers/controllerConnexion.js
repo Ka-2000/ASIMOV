@@ -1,4 +1,4 @@
-const modelAccueil = require('../models/modelAccueil');
+const modelAccueil = require('../models/modelConnexion');
 const cookieParser = require('cookie-parser')
 
 const controllerMain = {
@@ -14,7 +14,7 @@ const controllerMain = {
 				
 				res.cookie('role', data[0].professeur_Role)
 				res.cookie('id', data[0].professeur_Id)
-				res.render("accueil", {dataProfesseur:data[0].professeur_Role})
+				res.render("accueil", {dataProfesseur:data[0]})
 			
 			}else{
 

@@ -3,8 +3,8 @@ const ejs = require('ejs')
 const path = require('path')
 const port = 3600
 
-const mainRoutes = require('./routes/routesMain.js')
-// const missionRoutes = require('./routes/routesMission.js')
+const connexionRoutes = require('./routes/routesConnexion.js')
+const classeRoutes = require('./routes/routesClasse.js')
 // const paiementRoutes = require('./routes/routesPaiement.js')
 // const parametreRoutes = require('./routes/routesParametre.js')
 const cookieParser = require('cookie-parser')
@@ -21,8 +21,8 @@ app.use(express.urlencoded());
 app.listen(port, () => console.log('le serveur Asimov est prêt'));
 
 //Définition des routes
-app.use('/', mainRoutes)
-// app.use('/mission', missionRoutes)
+app.use('/', connexionRoutes)
+app.use('/classes', classeRoutes)
 // app.use('/paiement', paiementRoutes)
 // app.use('/parametres', parametreRoutes)
 
