@@ -12,10 +12,9 @@ const controllerMain = {
 			
 			if(data[0] != undefined){
 				
-				res.cookie('responsable', data[0].employe_Responsable)
-				res.cookie('comptable', data[0].employe_Comptable)
-				res.cookie('id', data[0].employe_Id)
-				res.redirect("http://localhost:3600/mission")
+				res.cookie('role', data[0].professeur_Role)
+				res.cookie('id', data[0].professeur_Id)
+				res.redirect("http://localhost:3600/accueil")
 			
 			}else{
 
@@ -45,8 +44,7 @@ const controllerMain = {
 
 		try {
 
-			res.clearCookie("responsable");
-			res.clearCookie("comptable");
+			res.clearCookie("role");
 			res.clearCookie("id");
 			
             res.render("connexion")

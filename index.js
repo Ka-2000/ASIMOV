@@ -18,7 +18,7 @@ app.use(cookieParser())
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.listen(port, () => console.log('le serveur Epoka est prêt'));
+app.listen(port, () => console.log('le serveur Asimov est prêt'));
 
 //Définition des routes
 app.use('/', mainRoutes)

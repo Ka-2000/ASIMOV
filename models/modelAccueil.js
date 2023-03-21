@@ -24,7 +24,7 @@ const Accueil = {
         let matricule = req.body.matricule
         let motdepasse = req.body.mdp
 
-        let requeteSQL = "SELECT * FROM employe WHERE employe_Id = ? AND employe_Mdp = password(?)"
+        let requeteSQL = "SELECT * professeur WHERE professeur_Id = ? AND professeur_Mdp = password(?)"
 
         return new Promise((resolve, reject) => {
 
