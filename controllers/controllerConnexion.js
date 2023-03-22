@@ -14,7 +14,7 @@ const controllerMain = {
 				
 				res.cookie('role', data[0].professeur_Role)
 				res.cookie('id', data[0].professeur_Id)
-				res.render("accueil", {dataProfesseur:data[0]})
+				res.render("accueil", {dataProfesseur:data[0], cookie:req.cookies.role})
 			
 			}else{
 
@@ -28,11 +28,23 @@ const controllerMain = {
 		}
 	},
 
-	affichageAccueil(req, res){
+	affichagePageConnexion(req, res){
 
 		try {
 
             res.render("connexion")
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
+	affichageAccueil(req, res){
+
+		try {
+
+            res.render("accueil", {cookie:req.cookies.role})
 
 		} catch (error) {
 

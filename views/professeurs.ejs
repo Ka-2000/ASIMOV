@@ -40,30 +40,23 @@
         margin-top: 50px;
       }
 
+      h2{
+
+        margin-top: 5%;
+        text-align: center;
+      }
+
     </style>
 
 </head>
 
 <body>
 
-  <div class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-
-    <div class = "container-fluid">
-
-      <ul class = "navbar-nav">
-
-        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/logout"> Déconnexion </a></li>
-        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Classes </a></li>
-        <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/professeurs"> Professeurs </a></li>
-        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/matieres"> Matières </a></li>
-          
-      </ul>
-
-      <a class = "navbar-brand"> Principal </a>
-
-    </div>
-    
-  </div>
+  <% if(cookie == 'Principal'){%>
+    <%- include('headerPrincipal') %>
+  <% }else{ %>
+    <%- include('headerProfesseur') %>
+  <% } %>
 
   <div>
 
@@ -103,33 +96,39 @@
 
   </div>
 
+  <h2> Ajout d'un professeur </h2>
+
   <div>
 
     <form action="/professeurs/ajouterProfesseur" method="POST" enctype="application/x-www-form-urlencoded">
         
       <div id = 'ajout'>
 
-        <label for = "nom">Nom:</label>
-        <input type = "text" name = "nom" id = "nom" value = "">
+        <label for = "nom", style="margin-right: 10px;">Nom:</label>
+        <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
     
-        <label for = "prenom">Prénom:</label>
-        <input type = "text" name = "prenom" id = "prenom" value = "">
+        <label for = "prenom", style="margin-right: 10px;">Prénom:</label>
+        <input type = "text" name = "prenom" id = "prenom" value = "", style="margin-right: 10px;">
 
-        <label for = "role">Rôle:</label>
-        <input type = "text" name = "role" id = "role" value = "">
+        <label for = "role", style="margin-right: 10px;">Rôle:</label>
+        <input type = "text" name = "role" id = "role" value = "", style="margin-right: 10px;">
       
-        <label for = "matiere">Matière:</label>
-        <input type = "text" name = "matiere" id = "matiere" value = "">
+        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
+        <input type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
 
-        <label for = "mdp">Mot de passe:</label>
-        <input type = "text" name = "mdp" id = "mdp" value = "">
+        <label for = "mdp", style="margin-right: 10px;">Mot de passe:</label>
+        <input type = "text" name = "mdp" id = "mdp" value = "", style="margin-right: 10px;">
+
+      </div>
+
+      <div style = "text-align: center; margin-top: 20px;">
 
         <button type = "submit">
 
-          <div>Ajouter</div>
+          <div>Envoyer</div>
 
         </button>
-
+    
       </div>
 
     </form>

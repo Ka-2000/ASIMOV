@@ -13,7 +13,7 @@ const controllerProfesseur = {
 
 				if(data1){
 					
-					res.render("professeurs", {dataProfesseur:data1})
+					res.render("professeurs", {dataProfesseur:data1, cookie:req.cookies.role})
 				
 				}else{
 
