@@ -60,6 +60,50 @@ const controllerProfesseur = {
 		}
 	},
 
+	async ajouterProfesseur(req, res){
+
+		try {
+
+			const data = await modelProfesseur.Professeurs.ajouterProfesseur(req)
+
+			if(data){
+
+				res.redirect("/professeurs");
+
+			}else{
+
+				console.log("champs incorrects")
+				res.redirect("/professeurs");
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
+	async supprimerProfesseur(req, res){
+
+		try {
+
+			const data = await modelProfesseur.Professeurs.supprimerProfesseur(req)
+
+			if(data){
+
+				res.redirect("/professeurs");
+
+			}else{
+
+				console.log("erreur lors de la suppression");
+				res.redirect("/professeurs");
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
     async modifierProfesseur(req, res){
 
 		try {

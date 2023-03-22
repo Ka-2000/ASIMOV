@@ -11,27 +11,34 @@
 
     <style>
 
-        table {
-          border-collapse: collapse;
-          width: 100%;
-        }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-        th, td {
-          text-align: left;
-          padding: 8px;
-        }
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
 
-        th {
-          background-color: #f2f2f2;
-        }
+      th {
+        background-color: #f2f2f2;
+      }
 
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
-        }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
 
-        tr:hover {
-          background-color: #ddd;
-        }
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      #ajout {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+      }
 
     </style>
 
@@ -48,6 +55,7 @@
         <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/logout"> Déconnexion </a></li>
         <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/classes"> Classes </a></li>
         <li class = "nav-item"><a class = "nav-link active" href = "http://localhost:3600/professeurs"> Professeurs </a></li>
+        <li class = "nav-item"><a class = "nav-link" href = "http://localhost:3600/matieres"> Matières </a></li>
           
       </ul>
 
@@ -68,6 +76,7 @@
           <th>Prénom</th>
           <th>Matière</th>
           <th>Modification</th>
+          <th>Suppression</th>
         </tr>
 
       </thead>
@@ -82,6 +91,7 @@
             <td><%= data.professeur_Prenom %></td>
             <td><%= data.professeur_Matiere %></td>
             <td><a href="http://localhost:3600/professeurs/modifierProfesseur/<%=data.professeur_Id%>"> Modifier </a></td>
+            <td><a href="http://localhost:3600/professeurs/supprimerProfesseur/<%=data.professeur_Id%>"> Supprimer </a></td>
 
           </tr>
 
@@ -90,6 +100,39 @@
       </tbody>
 
     </table>
+
+  </div>
+
+  <div>
+
+    <form action="/professeurs/ajouterProfesseur" method="POST" enctype="application/x-www-form-urlencoded">
+        
+      <div id = 'ajout'>
+
+        <label for = "nom">Nom:</label>
+        <input type = "text" name = "nom" id = "nom" value = "">
+    
+        <label for = "prenom">Prénom:</label>
+        <input type = "text" name = "prenom" id = "prenom" value = "">
+
+        <label for = "role">Rôle:</label>
+        <input type = "text" name = "role" id = "role" value = "">
+      
+        <label for = "matiere">Matière:</label>
+        <input type = "text" name = "matiere" id = "matiere" value = "">
+
+        <label for = "mdp">Mot de passe:</label>
+        <input type = "text" name = "mdp" id = "mdp" value = "">
+
+        <button type = "submit">
+
+          <div>Ajouter</div>
+
+        </button>
+
+      </div>
+
+    </form>
 
   </div>
       

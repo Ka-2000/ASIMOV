@@ -60,6 +60,53 @@ const Professeurs = {
         })
     },
 
+    async ajouterProfesseur(req){
+
+        let nom = req.body.nom
+        let prenom = req.body.prenom
+        let role = req.body.role
+        let matiere = req.body.matiere
+        let mdp = req.body.mdp
+
+        let requeteSQL = "INSERT INTO professeur (professeur_Nom, professeur_Prenom, professeur_Mdp, professeur_Role, professeur_Matiere) VALUES(?,?, password(?), ?, ?)"
+
+        return new Promise((resolve, reject)=>{
+
+            mysqlconnexion.query(requeteSQL, [nom, prenom, mdp, role, matiere], (err, lignes, champs) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+
+                return resolve(lignes)
+
+            })
+        })
+    },
+
+    async supprimerProfesseur(req){ 
+        
+        let id = req.params.id
+        let requeteSQL = "DELETE FROM professeur WHERE professeur_Id = ?"
+
+        return new Promise((resolve, reject)=>{
+
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes, champs) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+
+                return resolve(lignes)
+
+            })
+        })
+    },
+
     async modifierProfesseur(req){
 
         let id = req.params.id
