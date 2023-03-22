@@ -59,6 +59,29 @@ const Classes = {
 
             })
         })
+    },
+
+    async ajouterClasse(req){
+
+        let nom = req.body.nom
+        let professeur = req.body.professeur
+
+        let requeteSQL = "INSERT INTO classe (classe_Nom, classe_IdProfesseurPrincipal) VALUES(?,?)"
+
+        return new Promise((resolve, reject)=>{
+
+            mysqlconnexion.query(requeteSQL, [nom, professeur], (err, lignes, champs) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+
+                return resolve(lignes)
+
+            })
+        })
     }
 }
 

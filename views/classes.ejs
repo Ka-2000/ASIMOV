@@ -11,27 +11,40 @@
 
   <style>
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-      th, td {
-        text-align: left;
-        padding: 8px;
-      }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
 
-      th {
-        background-color: #f2f2f2;
-      }
+    th {
+      background-color: #f2f2f2;
+    }
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-      tr:hover {
-        background-color: #ddd;
-      }
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    #ajout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    h2{
+
+      margin-top: 5%;
+      text-align: center;
+    }
 
   </style>
 
@@ -53,6 +66,9 @@
 
             <tr>
             <th>Nom</th>
+            <% if(cookie == 'Principal'){%>
+              <th>Professeur Principal</th>
+            <% } %>
             <th>Effectif</th>
             </tr>
 
@@ -62,10 +78,18 @@
 
         <% dataClasse.forEach(function(data){ %>
 
-            <tr>
-              <td><%= data.classe_Nom %></td>
-              <td> A remplir</td>
-            </tr>
+          <tr>
+            <td><%= data.classe_Nom %></td>
+            <% if(cookie == 'Principal'){%>
+              <td>
+
+                <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Nom %>
+                <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Prenom %>
+
+              </td>
+            <% } %>
+            <td> A remplir</td>
+          </tr>
 
         <% })%>
 
@@ -74,6 +98,52 @@
     </table>
 
   </div>
+
+  <% if(cookie == 'Principal'){%>
+
+    <h2> Ajout d'une classe </h2>
+
+    <div>
+
+      <form action="/classes/ajouterClasse" method="POST" enctype="application/x-www-form-urlencoded">
+          
+        <div id = 'ajout'>
+
+          <label for = "nom", style="margin-right: 10px;">Nom:</label>
+          <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
+      
+          <label for = "professeur", style="margin-right: 10px;">Professeur:</label>
+          <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
+
+            <% dataProfesseur.forEach(function(data){ %>
+
+              <% if(data.professeur_Role != "Principal"){ %>
+
+                <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
+              
+              <% } %>
+
+            <% }) %>
+
+          </select>
+
+        </div>
+
+        <div style = "text-align: center; margin-top: 20px;">
+
+          <button type = "submit">
+
+            <div>Envoyer</div>
+
+          </button>
+      
+        </div>
+
+      </form>
+
+    </div>
+  
+  <% } %>
       
 </body>
 </html>

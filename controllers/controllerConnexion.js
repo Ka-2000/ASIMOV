@@ -14,7 +14,7 @@ const controllerMain = {
 				
 				res.cookie('role', data[0].professeur_Role)
 				res.cookie('id', data[0].professeur_Id)
-				res.render("accueil", {dataProfesseur:data[0], cookie:req.cookies.role})
+				res.render("accueil", {dataProfesseur:data[0], cookie:data[0].professeur_Role})
 			
 			}else{
 
