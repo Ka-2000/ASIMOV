@@ -76,6 +76,42 @@ const controllerClasse = {
 		}
 	},
 
+	async affichageUneClasse(req, res){
+
+		if(req.cookies.role == "Principal"){
+			
+			try{
+
+				const data1 = await modelClasses.Classes.afficherUneClasse(req)
+				const data2 = await modelProfesseurs.Professeurs.afficherProfesseurs()
+
+				if(data1){
+					
+					res.render("modifierClasses", {dataClasse:data1, cookie:req.cookies.role, dataProfesseur:data2})
+				
+				}else{
+
+					res.render("accueil")
+				}
+
+			} catch (error) {
+
+				console.log(error)
+			}
+		
+		}else{
+
+			try{
+
+               console.log("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
+		}
+	},
+
 	async ajouterClasse(req, res){
 
 		try {
@@ -90,6 +126,50 @@ const controllerClasse = {
 
 				console.log("champs incorrects")
 				res.redirect("/classes");
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
+	async supprimerClasse(req, res){
+
+		try {
+
+			const data = await modelClasses.Classes.supprimerClasse(req)
+
+			if(data){
+
+				res.redirect("/classes/principal");
+
+			}else{
+
+				console.log("champs incorrects")
+				res.redirect("/classes/principal");
+			}
+
+		} catch (error) {
+
+			console.log(error)
+		}
+	},
+
+	async modifierClasse(req, res){
+
+		try {
+
+			const data = await modelClasses.Classes.modifierClasse(req)
+
+			if(data){
+
+				res.redirect("/classes/principal");
+
+			}else{
+
+				console.log("champs incorrects")
+				res.redirect("/classes/modifierClasse/" + req.params.id);
 			}
 
 		} catch (error) {

@@ -70,6 +70,10 @@
               <th>Professeur Principal</th>
             <% } %>
             <th>Effectif</th>
+            <% if(cookie == 'Principal'){%>
+              <th>Modification</th>
+              <th>Suppression</th>
+            <% } %>
             </tr>
 
         </thead>
@@ -82,13 +86,15 @@
             <td><%= data.classe_Nom %></td>
             <% if(cookie == 'Principal'){%>
               <td>
-
                 <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Nom %>
                 <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Prenom %>
-
               </td>
             <% } %>
             <td> A remplir</td>
+            <% if(cookie == 'Principal'){%>
+              <td><a href="http://localhost:3600/classes/modifierClasse/<%=data.classe_Id%>"> Modifier </a></td>
+              <td><a href="http://localhost:3600/classes/supprimerClasse/<%=data.classe_Id%>"> Supprimer </a></td>
+            <% } %>
           </tr>
 
         <% })%>
