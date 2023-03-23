@@ -133,7 +133,6 @@ const Classes = {
         let nom = req.body.nom
         let professeur = req.body.professeur
         
-        
         let requeteSQL = "UPDATE classe SET classe_Nom = ?, classe_IdProfesseurPrincipal = ? WHERE classe_Id = ?"
         
         return new Promise((resolve, reject)=>{

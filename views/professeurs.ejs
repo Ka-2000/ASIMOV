@@ -114,7 +114,15 @@
         <input type = "text" name = "role" id = "role" value = "", style="margin-right: 10px;">
       
         <label for = "matiere", style="margin-right: 10px;">Matière:</label>
-        <input type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
+        <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
+
+          <% dataMatiere.forEach(function(data){ %>
+
+            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
+
+          <% }) %>
+
+        </select>
 
         <label for = "mdp", style="margin-right: 10px;">Mot de passe:</label>
         <input type = "text" name = "mdp" id = "mdp" value = "", style="margin-right: 10px;">

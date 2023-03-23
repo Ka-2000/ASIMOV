@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoka Web</title>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    #ajout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    h2{
+
+      margin-top: 5%;
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+    <%- include('headerPrincipal') %>
+
+    <div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                <th>Nom</th>
+                <th>Professeur</th>
+                <th>Modification</th>
+                <th>Suppression</th>
+                </tr>
+
+            </thead>
+
+        <tbody>
+
+            <% dataMatiere.forEach(function(data){ %>
+
+                <tr>
+                    <td><%= data.matiere_Nom %></td>
+                    <td>
+                        <% try{ %>
+                            <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Nom %>
+                            <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Prenom %>
+                        <% }catch{ %>
+                            Non défini
+                        <% } %>
+                    </td>
+                    <td><a href="http://localhost:3600/matieres/modifierMatiere/<%=data.matiere_Id%>"> Modifier </a></td>
+                    <td><a href="http://localhost:3600/matieres/supprimerMatiere/<%=data.matiere_Id%>"> Supprimer </a></td>
+                    
+                </tr>
+
+            <% })%>
+
+        </tbody>
+
+        </table>
+
+    </div>
+
+    <h2> Ajout d'une matière </h2>
+
+    <div>
+
+    <form action="/matieres/ajouterMatiere" method="POST" enctype="application/x-www-form-urlencoded">
+        
+        <div id = 'ajout'>
+
+            <label for = "nom", style="margin-right: 10px;">Nom:</label>
+            <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
+        
+            <label for = "professeur", style="margin-right: 10px;">Professeur:</label>
+            <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
+
+                <% dataProfesseur.forEach(function(data){ %>
+
+                    <% if(data.professeur_Role != "Principal"){ %>
+
+                        <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
+                    
+                    <% } %>
+
+                <% }) %>
+
+                <option value = ""> Non défini </option>
+
+            </select>
+
+        </div>
+
+        <div style = "text-align: center; margin-top: 20px;">
+
+            <button type = "submit">
+
+                <div>Envoyer</div>
+
+            </button>
+    
+        </div>
+
+    </form>
+
+    </div>
+    
+    
+      
+</body>
+</html>

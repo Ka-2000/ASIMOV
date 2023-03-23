@@ -6,6 +6,7 @@ const port = 3600
 const connexionRoutes = require('./routes/routesConnexion.js')
 const classeRoutes = require('./routes/routesClasse.js')
 const professeurRoutes = require('./routes/routesProfesseur.js')
+const matiereRoutes = require('./routes/routesMatiere.js')
 
 const cookieParser = require('cookie-parser')
 
@@ -24,6 +25,7 @@ app.listen(port, () => console.log('le serveur Asimov est prêt'));
 app.use('/', connexionRoutes)
 app.use('/classes', classeRoutes)
 app.use('/professeurs', professeurRoutes)
+app.use('/matieres', matiereRoutes)
 
 
 

@@ -96,41 +96,47 @@
 
 <body>
 
-  <% dataClasse.forEach(function(data){ %>
+  <% dataMatiere.forEach(function(data){ %>
 
-    <form action="/classes/modifierClasse/<%= data.classe_Id %>" method="POST" enctype="application/x-www-form-urlencoded">
+    <form action="/matieres/modifierMatiere/<%= data.matiere_Id %>" method="POST" enctype="application/x-www-form-urlencoded">
     
       <div>
 
         <label for = "nom">Nom:</label>
-        <input type = "text" name = "nom" id = "nom" value = "<%= data.classe_Nom %>">
-    
+        <input type = "text" name = "nom" id = "nom" value = "<%= data.matiere_Nom %>">
+
         <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
 
-          <option value = "<%= data.classe_IdProfesseurPrincipal %>"> 
-            <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Nom %> 
-            <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Prenom %> 
-          </option>
-
-          <% dataProfesseur.forEach(function(data){ %>
-
-            <% if(data.professeur_Role != "Principal"){ %>
-
-              <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
-            
+            <% try{ %>
+                <option value = "<%= data.matiere_IdProfesseur %>">
+                <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Nom %>
+                <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Prenom %>
+                </option>
+            <% }catch{ %>
+                <option value = "">Non défini</option>
             <% } %>
+
+            <% dataProfesseur.forEach(function(data){ %>
+
+                <% if(data.professeur_Role != "Principal"){ %>
+
+                    <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
+                
+                <% } %>
+                
+            <% }) %>
             
-          <% }) %>
+            <option value = ""> Non défini </option>
 
         </select>
 
-      </div>
+        </div>
 
-      <div style = "text-align: center; margin-top: 20px;">
+        <div style = "text-align: center; margin-top: 20px;">
 
         <button type = "submit">
 
-          <div>Envoyer</div>
+            <div>Envoyer</div>
 
         </button>
       
