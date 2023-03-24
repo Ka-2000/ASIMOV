@@ -10,14 +10,11 @@ const controllerProfesseur = {
 
 			try{
 
-				const data1 = await modelProfesseur.Professeurs.afficherProfesseurs()
-				const data2 = await modelMatiere.Matieres.afficherMatieres()
-				console.log('prof', data1)
-				console.log('matières', data2)
+				const data1 = await modelProfesseur.Professeurs.afficherProfesseurs2()
 
 				if(data1){
 					
-					res.render("professeurs", {dataProfesseur:data1, cookie:req.cookies.role, dataMatiere:data2})
+					res.render("professeurs", {cookie:req.cookies.role, dataTotale:data1})
 				
 				}else{
 

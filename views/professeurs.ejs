@@ -76,23 +76,22 @@
 
       <tbody>
 
-        <% dataProfesseur.forEach(function(data){ %>
+        <% dataTotale.forEach(function(data){ %>
 
           <tr>
               
             <td><%= data.professeur_Nom %></td>
             <td><%= data.professeur_Prenom %></td>
             <td>
-              <% try { %> 
+              <% if(data.matiere_Nom) { %> 
                 
-                <%= dataMatiere[data.professeur_Id].matiere_Nom %>
+                <%= data.matiere_Nom %>
               
-              <% } catch { %>
+              <% } else { %>
 
                 Non-Définie
 
               <% } %>
-            
             </td>
 
             <td><a href="http://localhost:3600/professeurs/modifierProfesseur/<%=data.professeur_Id%>"> Modifier </a></td>

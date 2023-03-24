@@ -19,9 +19,29 @@ mysqlconnexion.connect((err) => {
 
 const Professeurs = {
 
-    async afficherProfesseurs(req) {
+    async afficherProfesseurs() {
 
         let requeteSQL = "SELECT * FROM professeur"
+
+        return new Promise((resolve, reject) => {
+
+            mysqlconnexion.query(requeteSQL, (error, elements) => {
+
+                if (error) {
+
+                    return reject(error)
+
+                }
+
+                return resolve(elements)
+
+            })
+        })
+    },
+
+    async afficherProfesseurs2() {
+
+        let requeteSQL = "SELECT * FROM professeur LEFT JOIN matiere ON professeur_Id = matiere_IdProfesseur"
 
         return new Promise((resolve, reject) => {
 
