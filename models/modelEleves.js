@@ -21,7 +21,7 @@ const Eleves = {
 
     async afficherEleves(){
 
-        let requeteSQL = "SELECT * FROM Eleve"
+        let requeteSQL = "SELECT * FROM Eleve ORDER BY eleve_Nom"
 
         return new Promise((resolve, reject) => {
 
@@ -64,7 +64,7 @@ const Eleves = {
     async afficherElevesClasse(req) {
 
         let id = req.params.id
-        let requeteSQL = "SELECT * FROM eleve WHERE eleve_IdClasse = ?"
+        let requeteSQL = "SELECT * FROM eleve WHERE eleve_IdClasse = ? ORDER BY eleve_Nom"
 
         return new Promise((resolve, reject) => {
 

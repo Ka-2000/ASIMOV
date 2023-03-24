@@ -21,7 +21,7 @@ const Professeurs = {
 
     async afficherProfesseurs() {
 
-        let requeteSQL = "SELECT * FROM professeur"
+        let requeteSQL = "SELECT * FROM professeur ORDER BY professeur_Nom"
 
         return new Promise((resolve, reject) => {
 
@@ -41,7 +41,7 @@ const Professeurs = {
 
     async afficherProfesseurs2() {
 
-        let requeteSQL = "SELECT * FROM professeur LEFT JOIN matiere ON professeur_Id = matiere_IdProfesseur"
+        let requeteSQL = "SELECT * FROM professeur LEFT JOIN matiere ON professeur_Id = matiere_IdProfesseur ORDER BY professeur_Nom"
 
         return new Promise((resolve, reject) => {
 

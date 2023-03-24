@@ -39,6 +39,27 @@ const Matieres = {
         })
 
     },
+    
+    async afficherMatieres2(){
+
+        let requeteSQL = "SELECT * FROM matiere LEFT JOIN professeur ON matiere_IdProfesseur = professeur_Id"
+
+        return new Promise((resolve, reject) => {
+
+            mysqlconnexion.query(requeteSQL, (error, elements) => {
+
+                if (error) {
+
+                    return reject(error)
+
+                }
+
+                return resolve(elements)
+
+            })
+        })
+
+    },
 
     async afficherUneMatiere(req) {
 

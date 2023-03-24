@@ -40,6 +40,43 @@ const controllerClasse = {
 		}
 	},
 
+	async affichageMatiere2(req, res){
+
+		if(req.cookies.role == "Principal"){
+			
+			try{
+
+				const data1 = await modelMatiere.Matieres.afficherMatieres2()
+				const data2 = await modelProfesseurs.Professeurs.afficherProfesseurs()
+
+				console.log(data1, data2)
+				if(data1){
+					
+					res.render("matieres", {dataMatiere:data1, cookie:req.cookies.role, dataProfesseur:data2})
+				
+				}else{
+
+					res.render("accueil")
+				}
+
+			} catch (error) {
+
+				console.log(error)
+			}
+		
+		}else{
+
+			try{
+
+               console.log("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
+		}
+	},
+
 	async affichageUneMatiere(req, res){
 
 		if(req.cookies.role == "Principal"){
@@ -48,7 +85,7 @@ const controllerClasse = {
 
 				const data1 = await modelMatiere.Matieres.afficherUneMatiere(req)
 				const data2 = await modelProfesseurs.Professeurs.afficherProfesseurs()
-
+			
 				if(data1){
 					
 					res.render("modifierMatieres", {dataMatiere:data1, cookie:req.cookies.role, dataProfesseur:data2})

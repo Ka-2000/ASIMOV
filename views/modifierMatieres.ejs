@@ -107,27 +107,18 @@
 
         <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
 
-            <% try{ %>
-                <option value = "<%= data.matiere_IdProfesseur %>">
-                <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Nom %>
-                <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Prenom %>
-                </option>
-            <% }catch{ %>
-                <option value = "">Non défini</option>
-            <% } %>
+          <option value = ""> Non défini </option>
 
-            <% dataProfesseur.forEach(function(data){ %>
+          <% dataProfesseur.forEach(function(data){ %>
 
-                <% if(data.professeur_Role != "Principal"){ %>
+            <% if(data.professeur_Role != "Principal"){ %>
 
-                    <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
-                
-                <% } %>
-                
-            <% }) %>
+              <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
             
-            <option value = ""> Non défini </option>
-
+            <% } %>
+              
+          <% }) %>
+          
         </select>
 
         </div>
