@@ -96,52 +96,52 @@
 
 <body>
 
-    <% dataEleve.forEach(function(data){ %>
+  <% dataEleve.forEach(function(data){ %>
 
-        <form action="/eleves/modifierEleve/<%= data.eleve_Id %>" method="POST" enctype="application/x-www-form-urlencoded">
+    <form action="/eleves/modifierEleve/<%= data.eleve_Id %>" method="POST" enctype="application/x-www-form-urlencoded">
 
-            <div>
+      <div>
 
-            <label for = "nom">Nom:</label>
-            <input type = "text" name = "nom" id = "nom" value = "<%= data.eleve_Nom %>">
+      <label for = "nom">Nom:</label>
+      <input type = "text" name = "nom" id = "nom" value = "<%= data.eleve_Nom %>">
 
-            <label for = "prenom">Prenom:</label>
-            <input type = "text" name = "prenom" id = "prenom" value = "<%= data.eleve_Prenom %>">
+      <label for = "prenom">Prenom:</label>
+      <input type = "text" name = "prenom" id = "prenom" value = "<%= data.eleve_Prenom %>">
 
-            <label for = "age">Age:</label>
-            <input type = "text" name = "age" id = "age" value = "<%= data.eleve_Age %>">
+      <label for = "age">Age:</label>
+      <input type = "text" name = "age" id = "age" value = "<%= data.eleve_Age %>">
 
-            <select type = "text" name = "classe" id = "classe" value = "", style="margin-right: 10px;">
+      <select type = "text" name = "classe" id = "classe" value = "", style="margin-right: 10px;">
 
-                <option value = "<%= data.eleve_IdClasse %>"><%= data.classe_Nom %></option>
+        <option value = "<%= data.eleve_IdClasse %>"><%= data.classe_Nom %></option>
 
-                <% dataClasse.forEach(function(dataC){ %>
+        <% dataClasse.forEach(function(dataC){ %>
 
-                    <% if(dataC.classe_Id != data.eleve_IdClasse){ %>
+          <% if(dataC.classe_Id != data.eleve_IdClasse){ %>
 
-                        <option value = "<%= dataC.classe_Id %>"><%= dataC.classe_Nom %></option>
+            <option value = "<%= dataC.classe_Id %>"><%= dataC.classe_Nom %></option>
 
-                    <% } %>
-                
-                <% }) %>
+          <% } %>
+        
+        <% }) %>
 
-            </select>
+      </select>
 
-            </div>
+      </div>
 
-            <div style = "text-align: center; margin-top: 20px;">
+      <div style = "text-align: center; margin-top: 20px;">
 
-            <button type = "submit">
+      <button type = "submit">
 
-                <div>Envoyer</div>
+        <div>Envoyer</div>
 
-            </button>
-            
-            </div>
+      </button>
+      
+      </div>
 
-        </form>
+    </form>
 
-    <% }) %>
+  <% }) %>
 
     
 </body>
