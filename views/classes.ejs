@@ -83,7 +83,7 @@
         <% dataClasse.forEach(function(data){ %>
 
           <tr>
-            <td><%= data.classe_Nom %></td>
+            <td><a href="http://localhost:3600/eleves/afficherUneClasse/<%=data.classe_Id%>"> <%= data.classe_Nom %> </a></td>
             <% if(cookie == 'Principal'){%>
               <td>
                 <%= dataProfesseur[data.classe_IdProfesseurPrincipal - 1].professeur_Nom %>
