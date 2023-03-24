@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoka Web</title>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    #ajout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    h2{
+
+      margin-top: 5%;
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <% if(cookie == 'Principal'){%>
+    <%- include('headerPrincipal') %>
+  <% }else{ %>
+    <%- include('headerProfesseur') %>
+  <% } %>
+
+  <div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Age</th>
+            <th>Classe</th>
+            <% if(cookie == 'Principal'){%>
+              <th>Modification</th>
+              <th>Suppression</th>
+            <% } %>
+            </tr>
+
+        </thead>
+
+      <tbody>
+
+        <% dataEleve.forEach(function(data){ %>
+
+          <tr>
+            <td><%= data.eleve_Nom %></td>
+            <td><%= data.eleve_Prenom %></td>
+            <td><%= data.eleve_Age %></td>
+            <td><%= dataClasse[data.eleve_IdClasse - 1].classe_Nom %></td>
+            <% if(cookie == 'Principal'){%>
+              <td><a href="http://localhost:3600/eleves/modifierEleve/<%=data.eleve_Id%>"> Modifier </a></td>
+              <td><a href="http://localhost:3600/eleves/supprimerEleve/<%=data.eleve_Id%>"> Supprimer </a></td>
+            <% } %>
+          </tr>
+
+        <% })%>
+
+      </tbody>
+
+    </table>
+
+  </div>
+      
+</body>
+</html>

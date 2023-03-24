@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoka Web</title>
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 32px;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+    <% dataEleve.forEach(function(data){ %>
+
+        <form action="/eleves/modifierEleve/<%= data.eleve_Id %>" method="POST" enctype="application/x-www-form-urlencoded">
+
+            <div>
+
+            <label for = "nom">Nom:</label>
+            <input type = "text" name = "nom" id = "nom" value = "<%= data.eleve_Nom %>">
+
+            <label for = "prenom">Prenom:</label>
+            <input type = "text" name = "prenom" id = "prenom" value = "<%= data.eleve_Prenom %>">
+
+            <label for = "age">Age:</label>
+            <input type = "text" name = "age" id = "age" value = "<%= data.eleve_Age %>">
+
+            <select type = "text" name = "classe" id = "classe" value = "", style="margin-right: 10px;">
+
+                <option value = "<%= data.eleve_IdClasse %>"><%= data.classe_Nom %></option>
+
+                <% dataClasse.forEach(function(dataC){ %>
+
+                    <% if(dataC.classe_Id != data.eleve_IdClasse){ %>
+
+                        <option value = "<%= dataC.classe_Id %>"><%= dataC.classe_Nom %></option>
+
+                    <% } %>
+                
+                <% }) %>
+
+            </select>
+
+            </div>
+
+            <div style = "text-align: center; margin-top: 20px;">
+
+            <button type = "submit">
+
+                <div>Envoyer</div>
+
+            </button>
+            
+            </div>
+
+        </form>
+
+    <% }) %>
+
+    
+</body>

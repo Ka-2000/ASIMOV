@@ -1,4 +1,5 @@
 const modelEleves = require('../models/modelEleves');
+const modelClasses = require('../models/modelClasses');
 const cookieParser = require('cookie-parser')
 
 const controllerEleve = {
@@ -10,10 +11,11 @@ const controllerEleve = {
 			try{
 
 				const data1 = await modelEleves.Eleves.afficherEleves()
+				const data2 = await modelClasses.Classes.afficherToutesClasses()
 
 				if(data1){
 					
-					res.render("eleves", {cookie:req.cookies.role, dataTotale:data1})
+					res.render("eleves", {cookie:req.cookies.role, dataEleve:data1, dataClasse:data2})
 				
 				}else{
 
@@ -80,10 +82,12 @@ const controllerEleve = {
 		try {
 
 			const data = await modelEleves.Eleves.afficherUnEleve(req)
+            const data2 = await modelClasses.Classes.afficherToutesClasses()
+            console.log(data)
 
 			if(data){
 
-				res.render("modifierEleves", {dataEleve: data})
+				res.render("modifierEleves", {dataEleve: data, dataClasse:data2})
 
 			}else{
 

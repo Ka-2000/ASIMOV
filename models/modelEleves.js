@@ -43,7 +43,7 @@ const Eleves = {
     async afficherUnEleve(req) {
 
         let id = req.params.id
-        let requeteSQL = "SELECT * FROM eleve WHERE eleve_Id = ?"
+        let requeteSQL = "SELECT * FROM eleve INNER JOIN classe ON eleve_IdClasse = classe_Id WHERE eleve_Id = ?"
 
         return new Promise((resolve, reject) => {
 
@@ -156,34 +156,17 @@ const Eleves = {
 
         return new Promise((resolve, reject)=>{
 
-            if(professeur){
+            mysqlconnexion.query(requeteSQL, [nom, prenom, age, classe, id], (err, lignes, champs) => {
 
-                mysqlconnexion.query(requeteSQL, [nom, prenom, age, classe, id], (err, lignes, champs) => {
+                if(err){
 
-                    if(err){
+                    return reject(err)
 
-                        return reject(err)
+                }
 
-                    }
+                return resolve(lignes)
 
-                    return resolve(lignes)
-
-                })
-
-            }else{
-
-                mysqlconnexion.query(requeteSQL, [nom, null, id], (err, lignes, champs) => {
-
-                    if(err){
-
-                        return reject(err)
-
-                    }
-
-                    return resolve(lignes)
-
-                })
-            }
+            })
         })
     }
 }
