@@ -76,12 +76,12 @@
                 <tr>
                     <td><%= data.matiere_Nom %></td>
                     <td>
-                        <% try{ %>
-                            <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Nom %>
-                            <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Prenom %>
-                        <% }catch{ %>
-                            Non défini
-                        <% } %>
+                      <% try{ %>
+                          <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Nom %>
+                          <%= dataProfesseur[data.matiere_IdProfesseur - 1].professeur_Prenom %>
+                      <% }catch{ %>
+                          Non défini
+                      <% } %>
                     </td>
                     <td><a href="http://localhost:3600/matieres/modifierMatiere/<%=data.matiere_Id%>"> Modifier </a></td>
                     <td><a href="http://localhost:3600/matieres/supprimerMatiere/<%=data.matiere_Id%>"> Supprimer </a></td>

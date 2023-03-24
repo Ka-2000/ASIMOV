@@ -64,15 +64,13 @@ const Professeurs = {
 
         let nom = req.body.nom
         let prenom = req.body.prenom
-        let role = req.body.role
-        let matiere = req.body.matiere
         let mdp = req.body.mdp
 
-        let requeteSQL = "INSERT INTO professeur (professeur_Nom, professeur_Prenom, professeur_Mdp, professeur_Role, professeur_Matiere) VALUES(?,?, password(?), ?, ?)"
+        let requeteSQL = "INSERT INTO professeur (professeur_Nom, professeur_Prenom, professeur_Mdp, professeur_Role) VALUES(?,?, password(?), 'Professeur')"
 
         return new Promise((resolve, reject)=>{
 
-            mysqlconnexion.query(requeteSQL, [nom, prenom, mdp, role, matiere], (err, lignes, champs) => {
+            mysqlconnexion.query(requeteSQL, [nom, prenom, mdp], (err, lignes, champs) => {
 
                 if(err){
 
@@ -112,13 +110,12 @@ const Professeurs = {
         let id = req.params.id
         let nom = req.body.nom
         let prenom = req.body.prenom
-        let matiere = req.body.matiere
         
-        let requeteSQL = "UPDATE professeur SET professeur_Nom = ?, professeur_Prenom = ?, professeur_Matiere = ? WHERE professeur_Id = ?"
+        let requeteSQL = "UPDATE professeur SET professeur_Nom = ?, professeur_Prenom = ? WHERE professeur_Id = ?"
         
         return new Promise((resolve, reject)=>{
 
-            mysqlconnexion.query(requeteSQL, [nom, prenom, matiere, id], (err, lignes, champs) => {
+            mysqlconnexion.query(requeteSQL, [nom, prenom, id], (err, lignes, champs) => {
 
                 if(err){
 

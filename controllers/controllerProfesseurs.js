@@ -12,7 +12,8 @@ const controllerProfesseur = {
 
 				const data1 = await modelProfesseur.Professeurs.afficherProfesseurs()
 				const data2 = await modelMatiere.Matieres.afficherMatieres()
-
+				console.log('prof', data1)
+				console.log('matières', data2)
 
 				if(data1){
 					
@@ -47,10 +48,11 @@ const controllerProfesseur = {
 		try {
 
 			const data = await modelProfesseur.Professeurs.afficherUnProfesseur(req)
+			const data2 = await modelMatiere.Matieres.afficherMatieres()
 
 			if(data){
 
-				res.render("modifierProfesseurs", {dataProfesseur: data})
+				res.render("modifierProfesseurs", {dataProfesseur: data, dataMatiere:data2})
 
 			}else{
 

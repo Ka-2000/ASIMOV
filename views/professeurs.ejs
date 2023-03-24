@@ -82,7 +82,19 @@
               
             <td><%= data.professeur_Nom %></td>
             <td><%= data.professeur_Prenom %></td>
-            <td><%= data.professeur_Matiere %></td>
+            <td>
+              <% try { %> 
+                
+                <%= dataMatiere[data.professeur_Id].matiere_Nom %>
+              
+              <% } catch { %>
+
+                Non-Définie
+
+              <% } %>
+            
+            </td>
+
             <td><a href="http://localhost:3600/professeurs/modifierProfesseur/<%=data.professeur_Id%>"> Modifier </a></td>
             <td><a href="http://localhost:3600/professeurs/supprimerProfesseur/<%=data.professeur_Id%>"> Supprimer </a></td>
 
@@ -109,20 +121,6 @@
     
         <label for = "prenom", style="margin-right: 10px;">Prénom:</label>
         <input type = "text" name = "prenom" id = "prenom" value = "", style="margin-right: 10px;">
-
-        <label for = "role", style="margin-right: 10px;">Rôle:</label>
-        <input type = "text" name = "role" id = "role" value = "", style="margin-right: 10px;">
-      
-        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
-        <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
-
-          <% dataMatiere.forEach(function(data){ %>
-
-            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
-
-          <% }) %>
-
-        </select>
 
         <label for = "mdp", style="margin-right: 10px;">Mot de passe:</label>
         <input type = "text" name = "mdp" id = "mdp" value = "", style="margin-right: 10px;">

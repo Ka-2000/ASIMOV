@@ -67,8 +67,6 @@ const Matieres = {
         let professeur = req.body.professeur
         let requeteSQL = "INSERT INTO matiere (matiere_Nom, matiere_IdProfesseur) VALUES(?,?)"
 
-        
-
         return new Promise((resolve, reject)=>{
 
             if(professeur){

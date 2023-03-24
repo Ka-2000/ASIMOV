@@ -108,8 +108,16 @@
         <label for = "prenom">Prénom:</label>
         <input type = "text" name = "prenom" id = "prenom" value = "<%= data.professeur_Prenom %>">
       
-        <label for = "matiere">Matière:</label>
-        <input type = "text" name = "matiere" id = "matiere" value = "<%= data.professeur_Matiere %>">
+        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
+        <select type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
+
+          <% dataMatiere.forEach(function(data){ %>
+
+            <option value = "<%= data.matiere_Nom %>"> <%= data.matiere_Nom %> </option>
+
+          <% }) %>
+
+        </select>
 
       </div>
 
