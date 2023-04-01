@@ -8,6 +8,7 @@ const classeRoutes = require('./routes/routesClasse.js')
 const professeurRoutes = require('./routes/routesProfesseur.js')
 const matiereRoutes = require('./routes/routesMatiere.js')
 const eleveRoutes = require('./routes/routesEleve.js')
+const noteRoutes = require('./routes/routesNote.js')
 
 const cookieParser = require('cookie-parser')
 
@@ -28,6 +29,7 @@ app.use('/classes', classeRoutes)
 app.use('/professeurs', professeurRoutes)
 app.use('/matieres', matiereRoutes)
 app.use('/eleves', eleveRoutes)
+app.use('/notes', noteRoutes)
 
 
 
