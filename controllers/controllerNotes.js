@@ -1,4 +1,6 @@
 const modelNote = require('../models/modelNotes');
+const modelMatiere = require('../models/modelMatieres');
+
 const cookieParser = require('cookie-parser');
 
 const controllerClasse = {
@@ -9,12 +11,12 @@ const controllerClasse = {
 			
 			try{
 
-				const data1 = await modelNote.Notes.afficherNotesEleve(req)
-				console.log(data1)
+				const data1 = await modelNote.Notes.afficherNotesEleve(req, res)
+				const data2 = await modelMatiere.Matieres.afficherMatieres()
 
 				if(data1){
 					
-					res.render("notes", {dataNotes:data1, cookie:req.cookies.role})
+					res.render("notes", {dataNotes:data1, dataMatieres:data2, cookie:req.cookies.role, idEleve:req.cookies.idEleve})
 				
 				}else{
 
@@ -82,7 +84,7 @@ const controllerClasse = {
 
 			if(data){
 
-				res.redirect("/notes");
+				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
 
 			}else{
 
@@ -104,7 +106,7 @@ const controllerClasse = {
 
 			if(data){
 
-				res.redirect("/notes");
+				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
 
 			}else{
 
@@ -126,7 +128,7 @@ const controllerClasse = {
 
 			if(data){
 
-				res.redirect("/notes");
+				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
 
 			}else{
 

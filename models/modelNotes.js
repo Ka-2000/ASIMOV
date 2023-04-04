@@ -19,14 +19,15 @@ mysqlconnexion.connect((err) => {
 
 const Notes = {
 
-    async afficherNotesEleve(req){
+    async afficherNotesEleve(req, res){
 
-        let eleve = req.params.eleve
-        let requeteSQL = "SELECT * FROM note WHERE note_IdEleve = ?"
+        let id = req.params.id
+        let requeteSQL = "SELECT Matiere.matiere_Nom, Note.note_Id, Note.note_Valeur FROM Eleve INNER JOIN Note ON Eleve.eleve_Id = Note.note_IdEleve INNER JOIN Matiere ON Note.note_IdMatiere = Matiere.matiere_Id WHERE Eleve.eleve_Id = ? "
+        res.cookie('idEleve', id)
 
         return new Promise((resolve, reject) => {
 
-            mysqlconnexion.query(requeteSQL, [eleve], (error, elements) => {
+            mysqlconnexion.query(requeteSQL, [id], (error, elements) => {
 
                 if (error) {
 
@@ -87,7 +88,7 @@ const Notes = {
     async supprimerNote(req){
 
         let id = req.params.id
-        let requeteSQL = "DELETE FROM note WHERE node_Id = ?"
+        let requeteSQL = "DELETE FROM note WHERE note_Id = ?"
 
         return new Promise((resolve, reject)=>{
 
@@ -108,15 +109,13 @@ const Notes = {
     async modifierNote(req){
 
         let id = req.params.id
-        let eleve = req.body.eleve
-        let matiere = req.body.matiere
         let valeur = req.body.valeur
 
-        let requeteSQL = "UPDATE note SET note_IdEleve = ?, note_IdMatiere = ?, note_Valeur WHERE matiere_Id = ?"
+        let requeteSQL = "UPDATE note SET note_Valeur = ? WHERE note_Id = ?"
 
         return new Promise((resolve, reject)=>{
 
-            mysqlconnexion.query(requeteSQL, [eleve, matiere, valeur, id], (err, lignes, champs) => {
+            mysqlconnexion.query(requeteSQL, [valeur, id], (err, lignes, champs) => {
 
                 if(err){
 

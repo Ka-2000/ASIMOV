@@ -62,22 +62,22 @@
 
     <table>
 
-        <thead>
+      <thead>
 
-            <tr>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Age</th>
-            </tr>
+        <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Age</th>
+        </tr>
 
-        </thead>
+      </thead>
 
       <tbody>
 
         <% dataClasse.forEach(function(data){ %>
 
           <tr>
-            <td><%= data.eleve_Nom %></td>
+            <td> <a href="http://localhost:3600/notes/notesEleve/<%=data.eleve_Id%>"> <%= data.eleve_Nom %> </a></td>
             <td><%= data.eleve_Prenom %></td>
             <td><%= data.eleve_Age %></td>
           </tr>
@@ -89,6 +89,45 @@
     </table>
 
   </div>
+
+  <% if(cookie == "Principal"){ %>
+
+    <div id = 'ajout'>
+
+      <form action="/notes/ajouterNote" method="POST" enctype="application/x-www-form-urlencoded">
+        
+        <input type = "text" name = "eleve" id = "eleve" value = "<%= idEleve %>", style="margin-right: 10px;" hidden>
+
+        <label for = "valeur", style = "margin-right: 10px;"> Valeur </label>
+        <input type = "text" name = "valeur" id = "valeur" value = "", style="margin-right: 10px;">
+    
+        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
+        <select type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
+
+          <% dataMatieres.forEach(function(data){ %>
+
+            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
+
+          <% }) %>
+
+        </select>
+        
+        
+        <div style = "text-align: center; margin-top: 20px;">
+
+          <button type = "submit">
+
+            <div>Envoyer</div>
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  <% } %>
       
 </body>
 </html>

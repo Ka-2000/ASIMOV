@@ -66,7 +66,6 @@
 
             <tr>
             <th>Note</th>
-            <th>Nom</th>
             <th>Matière</th>
             <th>Modification</th>
             <th>Suppression</th>
@@ -82,8 +81,7 @@
           <tr>
 
             <td> <%= data.note_Valeur %> </td>
-            <td> <%= dataEleves[data.note_IdEleve].eleve_Nom %> </td>
-            <td> <%= dataMatieres[data.note_IdMatiere].matiere_Nom %> </td>
+            <td> <%= data.matiere_Nom %> </td>
      
             <td><a href="http://localhost:3600/notes/modifierNote/<%=data.note_Id%>"> Modifier </a></td>
             <td><a href="http://localhost:3600/notes/supprimerNote/<%=data.note_Id%>"> Supprimer </a></td>
@@ -97,6 +95,45 @@
     </table>
 
   </div>
-      
+
+  <% if(cookie == "Principal" || cookie == "Professeur"){ %>
+
+    <div id = 'ajout'>
+
+      <form action="/notes/ajouterNote" method="POST" enctype="application/x-www-form-urlencoded">
+        
+        <input type = "text" name = "eleve" id = "eleve" value = "<%= idEleve %>", style="margin-right: 10px;" hidden>
+
+        <label for = "valeur", style = "margin-right: 10px;"> Valeur </label>
+        <input type = "text" name = "valeur" id = "valeur" value = "", style="margin-right: 10px;">
+    
+        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
+        <select type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
+
+          <% dataMatieres.forEach(function(data){ %>
+
+            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
+
+          <% }) %>
+
+        </select>
+        
+        
+        <div style = "text-align: center; margin-top: 20px;">
+
+          <button type = "submit">
+
+            <div>Envoyer</div>
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  <% } %>
+
 </body>
 </html>

@@ -100,43 +100,43 @@
 
     <div>
 
-    <form action="/matieres/ajouterMatiere" method="POST" enctype="application/x-www-form-urlencoded">
-        
+      <form action="/matieres/ajouterMatiere" method="POST" enctype="application/x-www-form-urlencoded">
+          
         <div id = 'ajout'>
 
-            <label for = "nom", style="margin-right: 10px;">Nom:</label>
-            <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
-        
-            <label for = "professeur", style="margin-right: 10px;">Professeur:</label>
-            <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
+          <label for = "nom", style="margin-right: 10px;">Nom:</label>
+          <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
+      
+          <label for = "professeur", style="margin-right: 10px;">Professeur:</label>
+          <select type = "text" name = "professeur" id = "professeur" value = "", style="margin-right: 10px;">
 
-              <option value = ""> Non défini </option>
+            <option value = ""> Non défini </option>
 
-              <% dataProfesseur.forEach(function(data){ %>
+            <% dataProfesseur.forEach(function(data){ %>
 
-                <% if(data.professeur_Role != "Principal"){ %>
+              <% if(data.professeur_Role != "Principal"){ %>
 
-                  <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
-                
-                <% } %>
+                <option value = "<%= data.professeur_Id %>"> <%= data.professeur_Nom %> <%= data.professeur_Prenom %> </option>
+              
+              <% } %>
 
-              <% }) %>
+            <% }) %>
 
-            </select>
+          </select>
 
-        </div>
+      </div>
 
-        <div style = "text-align: center; margin-top: 20px;">
+      <div style = "text-align: center; margin-top: 20px;">
 
-            <button type = "submit">
+        <button type = "submit">
 
-                <div>Envoyer</div>
+          <div>Envoyer</div>
 
-            </button>
+        </button>
     
         </div>
 
-    </form>
+      </form>
 
     </div>
     

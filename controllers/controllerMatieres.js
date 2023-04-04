@@ -49,7 +49,6 @@ const controllerClasse = {
 				const data1 = await modelMatiere.Matieres.afficherMatieres2()
 				const data2 = await modelProfesseurs.Professeurs.afficherProfesseurs()
 
-				console.log(data1, data2)
 				if(data1){
 					
 					res.render("matieres", {dataMatiere:data1, cookie:req.cookies.role, dataProfesseur:data2})
