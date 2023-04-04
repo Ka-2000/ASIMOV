@@ -19,6 +19,7 @@ mysqlconnexion.connect((err) => {
 
 const Classes = {
 
+    //Fonction pour le proviseur : permet d'afficher toutes les classes de l'établissement
     async afficherToutesClasses(){
 
         let requeteSQL = "SELECT * FROM classe"
@@ -40,6 +41,7 @@ const Classes = {
 
     },
 
+    //Fonction pour les professeurs : permet d'afficher les classes du professeur connecté
     async afficherMesClasses(req) {
 
         let id = req.cookies.id
@@ -61,7 +63,8 @@ const Classes = {
         })
     },
 
-    async afficherUneClasse(req) {
+    //Fonction pour le proviseur : permet d'afficher une classe en particulier
+    async afficherUneClasse(req){
 
         let id = req.params.id
         let requeteSQL = "SELECT * FROM classe WHERE classe_Id = ?"
@@ -82,11 +85,11 @@ const Classes = {
         })
     },
 
+    //Fonction pour le proviseur : permet d'ajouter une classe
     async ajouterClasse(req){
 
         let nom = req.body.nom
         let professeur = req.body.professeur
-
         let requeteSQL = "INSERT INTO classe (classe_Nom, classe_IdProfesseurPrincipal) VALUES(?,?)"
 
         return new Promise((resolve, reject)=>{
@@ -105,10 +108,10 @@ const Classes = {
         })
     },
 
+    //Fonction pour le proviseur : permet de supprimer une classe
     async supprimerClasse(req){
 
         let id = req.params.id
-
         let requeteSQL = "DELETE FROM classe WHERE classe_Id = ?"
 
         return new Promise((resolve, reject)=>{
@@ -127,12 +130,12 @@ const Classes = {
         })
     },
 
+    //Fonction pour le proviseur : permet de modifier une classe de l'établissement
     async modifierClasse(req){
 
         let id = req.params.id
         let nom = req.body.nom
         let professeur = req.body.professeur
-        
         let requeteSQL = "UPDATE classe SET classe_Nom = ?, classe_IdProfesseurPrincipal = ? WHERE classe_Id = ?"
         
         return new Promise((resolve, reject)=>{
@@ -150,8 +153,6 @@ const Classes = {
             })
         })
     }
-
-
 }
 
 module.exports = {

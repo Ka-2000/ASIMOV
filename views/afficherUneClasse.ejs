@@ -94,24 +94,18 @@
 
     <div id = 'ajout'>
 
-      <form action="/notes/ajouterNote" method="POST" enctype="application/x-www-form-urlencoded">
+      <form action="/eleves/ajouterEleve" method="POST" enctype="application/x-www-form-urlencoded">
+
+        <input type = "text" name = "classe" id = "classe" value = "<%= idClasse %>", style="margin-right: 10px;" hidden>
         
-        <input type = "text" name = "eleve" id = "eleve" value = "<%= idEleve %>", style="margin-right: 10px;" hidden>
+        <label for = "nom", style = "margin-right: 10px;"> Nom: </label>
+        <input type = "text" name = "nom" id = "nom" value = "", style="margin-right: 10px;">
 
-        <label for = "valeur", style = "margin-right: 10px;"> Valeur </label>
-        <input type = "text" name = "valeur" id = "valeur" value = "", style="margin-right: 10px;">
-    
-        <label for = "matiere", style="margin-right: 10px;">Matière:</label>
-        <select type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
+        <label for = "prenom", style = "margin-right: 10px;"> Prénom </label>
+        <input type = "text" name = "prenom" id = "prenom" value = "", style="margin-right: 10px;">
 
-          <% dataMatieres.forEach(function(data){ %>
-
-            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
-
-          <% }) %>
-
-        </select>
-        
+        <label for = "age", style = "margin-right: 10px;"> Age: </label>
+        <input type = "text" name = "age" id = "age" value = "", style="margin-right: 10px;">
         
         <div style = "text-align: center; margin-top: 20px;">
 

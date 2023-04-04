@@ -19,11 +19,11 @@ mysqlconnexion.connect((err) => {
 
 const Accueil = {
 
+    //Fonction récupérant le matricule et le mot de passe dans la page de connexion et vérifiant la correspondance dans la base de données
     async connexion(req){
 
         let matricule = req.body.matricule
         let motdepasse = req.body.mdp
-
         let requeteSQL = "SELECT * FROM professeur WHERE professeur_Nom = ? AND professeur_Mdp = password(?)"
 
         return new Promise((resolve, reject) => {

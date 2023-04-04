@@ -19,6 +19,7 @@ mysqlconnexion.connect((err) => {
 
 const Eleves = {
 
+    //Fonction pour le proviseur : permet d'afficher tous les élèves de l'établissement dans l'ordre alphabétique
     async afficherEleves(){
 
         let requeteSQL = "SELECT * FROM Eleve ORDER BY eleve_Nom"
@@ -40,6 +41,7 @@ const Eleves = {
 
     },
 
+    //Fonction pour le proviseur : permet d'afficher un élève en particulier de l'établissement
     async afficherUnEleve(req) {
 
         let id = req.params.id
@@ -61,10 +63,14 @@ const Eleves = {
         })
     },
 
-    async afficherElevesClasse(req) {
+    //Fonction pour le proviseur et les professeurs : permet d'afficher les élèves d'une classe en particulier
+    async afficherElevesClasse(req, res){
 
         let id = req.params.id
         let requeteSQL = "SELECT * FROM eleve WHERE eleve_IdClasse = ? ORDER BY eleve_Nom"
+
+        //On initialise un cookie pour pouvoir retrouver la classe dans la redirection depuis le controller
+        res.cookie('idClasse', id)
 
         return new Promise((resolve, reject) => {
 
@@ -82,6 +88,7 @@ const Eleves = {
         })
     },
 
+    //Fonction pour le proviseur : permet d'afficher un élève dans une classe de l'établissement
     async ajouterEleve(req){
 
         let nom = req.body.nom
@@ -92,37 +99,21 @@ const Eleves = {
 
         return new Promise((resolve, reject)=>{
 
-            if(professeur){
+            mysqlconnexion.query(requeteSQL, [nom, prenom, age, classe], (err, lignes, champs) => {
 
-                mysqlconnexion.query(requeteSQL, [nom, prenom, age, classe], (err, lignes, champs) => {
+                if(err){
 
-                    if(err){
+                    return reject(err)
 
-                        return reject(err)
+                }
 
-                    }
+                return resolve(lignes)
 
-                    return resolve(lignes)
-
-                })
-
-            }else{
-
-                mysqlconnexion.query(requeteSQL, [nom, null], (err, lignes, champs) => {
-
-                    if(err){
-
-                        return reject(err)
-
-                    }
-
-                    return resolve(lignes)
-
-                })
-            }
+            })
         })
     },
 
+    //Fonction pour le proviseur : permet de supprimer un élève de l'établissement
     async supprimerEleve(req){
 
         let id = req.params.id
@@ -144,6 +135,7 @@ const Eleves = {
         })
     },
 
+    //Fonction pour le proviseur : permet de modifier un élève de l'établissement
     async modifierEleve(req){
 
         let id = req.params.id

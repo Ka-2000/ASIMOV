@@ -47,11 +47,11 @@ const controllerEleve = {
 
 			try{
 
-				const data1 = await modelEleves.Eleves.afficherElevesClasse(req)
+				const data1 = await modelEleves.Eleves.afficherElevesClasse(req, res)
 
 				if(data1){
 					
-					res.render("afficherUneClasse", {cookie:req.cookies.role, dataClasse:data1})
+					res.render("afficherUneClasse", {cookie:req.cookies.role, dataClasse:data1, idClasse:req.cookies.idClasse})
 				
 				}else{
 
@@ -108,7 +108,7 @@ const controllerEleve = {
 
 			if(data){
 
-				res.redirect("/eleves");
+				res.redirect("/eleves/afficherUneClasse/" + req.cookies.idClasse);
 
 			}else{
 

@@ -19,6 +19,7 @@ mysqlconnexion.connect((err) => {
 
 const Professeurs = {
 
+    //Fonction pour le principal : permet d'afficher la liste des professeurs
     async afficherProfesseurs() {
 
         let requeteSQL = "SELECT * FROM professeur ORDER BY professeur_Nom"
@@ -39,6 +40,7 @@ const Professeurs = {
         })
     },
 
+    //Fonction pour le principal : permet d'afficher chaque professeur avec la matière qu'il enseigne'
     async afficherProfesseurs2() {
 
         let requeteSQL = "SELECT * FROM professeur LEFT JOIN matiere ON professeur_Id = matiere_IdProfesseur ORDER BY professeur_Nom"
@@ -59,6 +61,7 @@ const Professeurs = {
         })
     },
 
+    //Fonction pour le principal : permet d'afficher un professeur en particulier
     async afficherUnProfesseur(req){
 
         let id = req.params.id
@@ -80,12 +83,12 @@ const Professeurs = {
         })
     },
 
+    //Fonction pour le principal : permet d'ajouter un professeur à l'établissement
     async ajouterProfesseur(req){
 
         let nom = req.body.nom
         let prenom = req.body.prenom
         let mdp = req.body.mdp
-
         let requeteSQL = "INSERT INTO professeur (professeur_Nom, professeur_Prenom, professeur_Mdp, professeur_Role) VALUES(?,?, password(?), 'Professeur')"
 
         return new Promise((resolve, reject)=>{
@@ -104,6 +107,7 @@ const Professeurs = {
         })
     },
 
+    //Fonction pour le principal : permet de supprimer un professeur de l'établissement
     async supprimerProfesseur(req){ 
         
         let id = req.params.id
@@ -125,12 +129,12 @@ const Professeurs = {
         })
     },
 
+    //Fonction pour le principal : permet de modifier un professeur de l'établissement
     async modifierProfesseur(req){
 
         let id = req.params.id
         let nom = req.body.nom
         let prenom = req.body.prenom
-        
         let requeteSQL = "UPDATE professeur SET professeur_Nom = ?, professeur_Prenom = ? WHERE professeur_Id = ?"
         
         return new Promise((resolve, reject)=>{

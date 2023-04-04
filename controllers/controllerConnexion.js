@@ -58,6 +58,8 @@ const controllerMain = {
 
 			res.clearCookie("role");
 			res.clearCookie("id");
+			res.clearCookie("idEleve");
+			res.clearCookie("idClasse");
 			
             res.render("connexion")
 
