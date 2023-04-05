@@ -33,7 +33,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render('refus')
 
             } catch (error) {
 
@@ -71,7 +71,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render('refus')
 
             } catch (error) {
 
@@ -109,7 +109,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render('refus')
 
             } catch (error) {
 
@@ -147,7 +147,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render('refus')
 
             } catch (error) {
 
@@ -185,7 +185,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render('refus')
 
             } catch (error) {
 
@@ -210,7 +210,6 @@ const controllerClasse = {
 	
 				}else{
 	
-					console.log("champs incorrects")
 					res.redirect("/classes/modifierClasse/" + req.params.id);
 				}
 	
@@ -223,7 +222,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+               res.render('refus')
 
             } catch (error) {
 
