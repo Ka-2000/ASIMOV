@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser')
 
 const controllerMain = {
 	
+	//Fonction pour tout utilisateur : permet une connexion si correspondance dans la base, sinon renvoit un message d'erreur
 	async controleConnexion(req, res){
 
 		try{
@@ -22,39 +23,42 @@ const controllerMain = {
 				res.render("connexion", { messageErreur: messageErreur })
 			}
 
-		} catch (error) {
+		}catch(error){
 
 			console.log(error)
 		}
 	},
 
+	//Fonction pour tout utilisateur : permet d'afficher la page de connexion
 	affichagePageConnexion(req, res){
 
-		try {
+		try{
 
             res.render("connexion")
 
-		} catch (error) {
+		}catch(error){
 
 			console.log(error)
 		}
 	},
 
+	//Fonction pour tout utilisateur identifié : permet d'afficher la page d'accueil, le cookie rôle permettra d'afficher une navbar personnalisée
 	affichageAccueil(req, res){
 
-		try {
+		try{
 
             res.render("accueil", {cookie:req.cookies.role})
 
-		} catch (error) {
+		}catch(error){
 
 			console.log(error)
 		}
 	},
 
-	deconnexion(req, res){
+	//Fonction pour tout utilisateur identifié : permet de se déconnecter en supprimant tous les cookies de session
+	deconnexion(res){
 
-		try {
+		try{
 
 			res.clearCookie("role");
 			res.clearCookie("id");
@@ -63,7 +67,7 @@ const controllerMain = {
 			
             res.render("connexion")
 
-		} catch (error) {
+		}catch(error){
 
 			console.log(error)
 		}
