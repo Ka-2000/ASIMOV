@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 
 const controllerClasse = {
 	
+	//Fonction pour les professeurs : permet d'afficher les classes d'un professeur
 	async affichageMesClasses(req, res){
 
+		//Sécurité au niveau du serveur : si token professeur renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Professeur"){
 
 			try{
@@ -40,8 +42,10 @@ const controllerClasse = {
 		}
 	},
 
+	//Fonction pour le principal : permet d'afficher toutes les classes de l'établissement
 	async affichageToutesClasses(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 			
 			try{
@@ -76,8 +80,10 @@ const controllerClasse = {
 		}
 	},
 
+	//Fonction pour le principal : permet d'afficher une classe de l'établissement en particulier
 	async affichageUneClasse(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 			
 			try{
@@ -112,69 +118,117 @@ const controllerClasse = {
 		}
 	},
 
+	//Fonction pour le principal : permet d'ajouter une classe à l'établissement
 	async ajouterClasse(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelClasses.Classes.ajouterClasse(req)
+			try {
 
-			if(data){
+				const data = await modelClasses.Classes.ajouterClasse(req)
 
-				res.redirect("/classes/principal");
+				if(data){
 
-			}else{
+					res.redirect("/classes/principal");
 
-				console.log("champs incorrects")
-				res.redirect("/classes");
+				}else{
+
+					console.log("champs incorrects")
+					res.redirect("/classes");
+				}
+
+			} catch (error) {
+
+				console.log(error)
 			}
 
-		} catch (error) {
+		}else{
 
-			console.log(error)
+			try{
+
+               console.log("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de supprimer une classe de l'établissement
 	async supprimerClasse(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelClasses.Classes.supprimerClasse(req)
+			try {
 
-			if(data){
-
-				res.redirect("/classes/principal");
-
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/classes/principal");
+				const data = await modelClasses.Classes.supprimerClasse(req)
+	
+				if(data){
+	
+					res.redirect("/classes/principal");
+	
+				}else{
+	
+					console.log("champs incorrects")
+					res.redirect("/classes/principal");
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
 
-		} catch (error) {
+		}else{
 
-			console.log(error)
+			try{
+
+               console.log("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de supprimer une classe de l'établissement
 	async modifierClasse(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelClasses.Classes.modifierClasse(req)
+			try {
 
-			if(data){
-
-				res.redirect("/classes/principal");
-
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/classes/modifierClasse/" + req.params.id);
+				const data = await modelClasses.Classes.modifierClasse(req)
+	
+				if(data){
+	
+					res.redirect("/classes/principal");
+	
+				}else{
+	
+					console.log("champs incorrects")
+					res.redirect("/classes/modifierClasse/" + req.params.id);
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
 
-		} catch (error) {
+		}else{
 
-			console.log(error)
+			try{
+
+               console.log("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	}
 }
