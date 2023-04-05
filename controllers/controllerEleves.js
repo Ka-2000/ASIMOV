@@ -4,9 +4,11 @@ const cookieParser = require('cookie-parser')
 
 const controllerEleve = {
 	
+	//Fonction pour le principal : permet d'afficher les élèves de l'établissement
 	async affichageEleves(req, res){
 
-		if(req.cookies.role == "Principal" || req.cookies.role == "Professeur"){
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
 			try{
 
@@ -19,11 +21,10 @@ const controllerEleve = {
 				
 				}else{
 
-					console.log("problème de récupération")
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
-			} catch (error) {
+			}catch(error){
 
 				console.log(error)
 			}
@@ -32,7 +33,7 @@ const controllerEleve = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
             } catch (error) {
 
@@ -41,8 +42,10 @@ const controllerEleve = {
 		}
 	},
 
+	//Fonction pour le principal ou les professeurs : permet d'afficher les élèves d'une classe de l'établissement
     async afficherElevesClasse(req, res){
 
+		//Sécurité au niveau du serveur : si token principal ou professeur renvoit les données, sinon renvoit sur une page de refus
         if(req.cookies.role == "Principal" || req.cookies.role == "Professeur"){
 
 			try{
@@ -55,8 +58,7 @@ const controllerEleve = {
 				
 				}else{
 
-					console.log("problème de récupération")
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
 			} catch (error) {
@@ -68,7 +70,7 @@ const controllerEleve = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
             } catch (error) {
 
@@ -77,92 +79,152 @@ const controllerEleve = {
 		}
     },
 
+	//Fonction pour le principal : permet d'afficher un élève en particulier
     async affichageUnEleve(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelEleves.Eleves.afficherUnEleve(req)
-            const data2 = await modelClasses.Classes.afficherToutesClasses()
-            console.log(data)
+			try {
 
-			if(data){
-
-				res.render("modifierEleves", {dataEleve: data, dataClasse:data2})
-
-			}else{
-
-				res.render("modifierEleves", {dataEleve: {} })
+				const data = await modelEleves.Eleves.afficherUnEleve(req)
+				const data2 = await modelClasses.Classes.afficherToutesClasses()
+	
+				if(data){
+	
+					res.render("modifierEleves", {dataEleve: data, dataClasse:data2})
+	
+				}else{
+	
+					res.render("probleme", {cookie:req.cookies.role})
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet d'ajouter un élève
 	async ajouterEleve(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelEleves.Eleves.ajouterEleve(req)
+			try {
 
-			if(data){
-
-				res.redirect("/eleves/afficherUneClasse/" + req.cookies.idClasse);
-
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/eleves");
+				const data = await modelEleves.Eleves.ajouterEleve(req)
+	
+				if(data){
+	
+					res.redirect("/eleves/afficherUneClasse/" + req.cookies.idClasse)
+	
+				}else{
+	
+					res.render("probleme", {cookie:req.cookies.role})
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de supprimer un élève
 	async supprimerEleve(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelEleves.Eleves.supprimerEleve(req)
+			try {
 
-			if(data){
-
-				res.redirect("/eleves");
-
-			}else{
-
-				console.log("erreur lors de la suppression");
-				res.redirect("/eleves");
+				const data = await modelEleves.Eleves.supprimerEleve(req)
+	
+				if(data){
+	
+					res.redirect("/eleves");
+	
+				}else{
+	
+					res.render("probleme", {cookie:req.cookies.role})
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de modifier un élève
     async modifierEleve(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelEleves.Eleves.modifierEleve(req)
+			try {
 
-			if(data){
-
-				res.redirect("/eleves");
-
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/eleves/modifierEleve/" + req.params.id);
+				const data = await modelEleves.Eleves.modifierEleve(req)
+	
+				if(data){
+	
+					res.redirect("/eleves");
+	
+				}else{
+	
+					res.render("probleme", {cookie:req.cookies.role})
+				}
+	
+			} catch (error) {
+	
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	}
 }

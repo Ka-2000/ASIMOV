@@ -56,7 +56,7 @@ const controllerMain = {
 	},
 
 	//Fonction pour tout utilisateur identifié : permet de se déconnecter en supprimant tous les cookies de session
-	deconnexion(res){
+	deconnexion(req, res){
 
 		try{
 
