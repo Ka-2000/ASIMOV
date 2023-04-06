@@ -5,9 +5,14 @@ const cookieParser = require('cookie-parser');
 
 const controllerClasse = {
 
+	//Fonction pour tout utilisateur identifié : permet d'afficher les notes d'un élève
+	//Le principal a accès à toutes les notes de n'importe quel élève
+	//Les professeurs n'ont accès aux notes de leurs élèves que si ils sont leur professeur principal
+	//Les élèves ne peuvent accéder qu'à leurs notes
 	async affichageNote(req, res){
 
-		if(req.cookies.role == "Principal"){
+		//Sécurité au niveau du serveur : si utilisateur identifié renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal" || req.cookies.role == "Professeur" || req.cookies.role == "Eleve"){
 			
 			try{
 
@@ -20,7 +25,7 @@ const controllerClasse = {
 				
 				}else{
 
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
 			} catch (error) {
@@ -32,7 +37,7 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
             } catch (error) {
 
@@ -41,8 +46,12 @@ const controllerClasse = {
 		}
 	},
 
+	//Fonction pour le principal ou professeur : permet d'afficher une note en particulier
+	//Le principal peut afficher n'importe quelle note
+	//Le professeur ne peut afficher de notes que dans sa matière
 	async affichageUneNote(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 			
 			try{
@@ -55,10 +64,10 @@ const controllerClasse = {
 				
 				}else{
 
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
-			} catch (error) {
+			}catch(error){
 
 				console.log(error)
 			}
@@ -67,78 +76,129 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
-            } catch (error) {
+            }catch(error){
 
                 console.log(error)
             }
 		}
 	},
 
+	//Fonction pour le principal ou professeur : permet d'ajouter' une note
+	//Le principal peut ajouter n'importe quelle note
+	//Le professeur ne peut ajouter de notes que dans sa matière
 	async ajouterNote(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelNote.Notes.ajouterNote(req)
+				const data = await modelNote.Notes.ajouterNote(req)
+			
+				if(data){
+					
+					res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+			}catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/notes");
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal ou professeur : permet de supprimer une note
+	//Le principal peut supprimer n'importe quelle note
+	//Le professeur ne peut supprimer que les notes dans sa matière
 	async supprimerNote(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelNote.Notes.supprimerNote(req)
+				const data = await modelNote.Notes.supprimerNote(req)
+			
+				if(data){
+					
+					res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+			}catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/notes");
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal ou professeur : permet de modifier une note
+	//Le principal peut modifier n'importe quelle note
+	//Le professeur ne peut modifier que les notes de sa matière
 	async modifierNote(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelNote.Notes.modifierNote(req)
+				const data = await modelNote.Notes.modifierNote(req)
+			
+				if(data){
+					
+					res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/notes/notesEleve/" + req.cookies.idEleve);
+			}catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/notes/modifierNotes/" + req.params.id);
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	}
 }
