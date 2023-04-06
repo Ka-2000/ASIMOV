@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser')
 
 const controllerProfesseur = {
 	
+	//Fonction pour le principal : permet d'afficher les professeurs de l'établissement
 	async affichageProfesseurs(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 
 			try{
@@ -18,8 +20,7 @@ const controllerProfesseur = {
 				
 				}else{
 
-					console.log("problème de récupération")
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
 			} catch (error) {
@@ -31,7 +32,7 @@ const controllerProfesseur = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
             } catch (error) {
 
@@ -40,91 +41,152 @@ const controllerProfesseur = {
 		}
 	},
 
+	//Fonction pour le principal : permet d'afficher un professeur en particulier
     async affichageUnProfesseur(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelProfesseur.Professeurs.afficherUnProfesseur(req)
-			const data2 = await modelMatiere.Matieres.afficherMatieres()
+			try{
 
-			if(data){
+				const data1 = await modelProfesseur.Professeurs.afficherUnProfesseur(req)
+				const data2 = await modelMatiere.Matieres.afficherMatieres()
 
-				res.render("modifierProfesseurs", {dataProfesseur: data, dataMatiere:data2})
+				if(data1){
+					
+					res.render("modifierProfesseurs", {dataProfesseur: data1, dataMatiere:data2})
+				
+				}else{
 
-			}else{
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.render("modifierProfesseurs", {dataProfesseur: {} })
+			} catch (error) {
+
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet d'ajouter un professeur à l'établissement
 	async ajouterProfesseur(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelProfesseur.Professeurs.ajouterProfesseur(req)
+			try{
 
-			if(data){
+				const data = await modelProfesseur.Professeurs.ajouterProfesseur(req)
 
-				res.redirect("/professeurs");
+				if(data){
+					
+					res.redirect("/professeurs");
+				
+				}else{
 
-			}else{
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				console.log("champs incorrects")
-				res.redirect("/professeurs");
+			} catch (error) {
+
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de supprimer un professeur de l'établissement
 	async supprimerProfesseur(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelProfesseur.Professeurs.supprimerProfesseur(req)
+			try{
 
-			if(data){
+				const data = await modelProfesseur.Professeurs.supprimerProfesseur(req)
 
-				res.redirect("/professeurs");
+				if(data){
+					
+					res.redirect("/professeurs");
+				
+				}else{
 
-			}else{
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				console.log("erreur lors de la suppression");
-				res.redirect("/professeurs");
+			} catch (error) {
+
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de modifier un professeur de l'établissement
     async modifierProfesseur(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
 
-			const data = await modelProfesseur.Professeurs.modifierProfesseur(req)
+			try{
 
-			if(data){
+				const data = await modelProfesseur.Professeurs.modifierProfesseur(req)
 
-				res.redirect("/professeurs");
+				if(data){
+					
+					res.redirect("/professeurs");
+				
+				}else{
 
-			}else{
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				console.log("champs incorrects")
-				res.redirect("/professeurs/modifierProfesseur/" + req.params.id);
+			} catch (error) {
+
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            } catch (error) {
+
+                console.log(error)
+            }
 		}
 	}
 }
