@@ -22,7 +22,7 @@ const Matieres = {
     //Fonction pour le proviseur : permet d'afficher chaque matière avec le professeur qui l'enseigne
     async afficherMatieres(){
 
-        let requeteSQL = "SELECT * FROM matiere LEFT JOIN professeur ON matiere_IdProfesseur = professeur_Id"
+        let requeteSQL = "SELECT * FROM matiere LEFT JOIN professeur ON matiere_IdProfesseur = professeur_Id ORDER BY matiere_Nom"
 
         return new Promise((resolve, reject) => {
 
