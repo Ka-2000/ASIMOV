@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 
 const controllerClasse = {
 
+	//Fonction pour le principal : permet d'afficher les matières
 	async affichageMatiere(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 			
 			try{
@@ -19,10 +21,10 @@ const controllerClasse = {
 				
 				}else{
 
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
-			} catch (error) {
+			}catch(error){
 
 				console.log(error)
 			}
@@ -31,17 +33,19 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
-            } catch (error) {
+            }catch(error){
 
                 console.log(error)
             }
 		}
 	},
 
+	//Fonction pour le principal : permet d'afficher une matière
 	async affichageUneMatiere(req, res){
 
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
 		if(req.cookies.role == "Principal"){
 			
 			try{
@@ -55,10 +59,10 @@ const controllerClasse = {
 				
 				}else{
 
-					res.render("accueil")
+					res.render("probleme", {cookie:req.cookies.role})
 				}
 
-			} catch (error) {
+			}catch(error){
 
 				console.log(error)
 			}
@@ -67,78 +71,123 @@ const controllerClasse = {
 
 			try{
 
-               console.log("refus")
+				res.render("refus")
 
-            } catch (error) {
+            }catch(error){
 
                 console.log(error)
             }
 		}
 	},
 
+	//Fonction pour le principal : permet d'ajouter une matière
 	async ajouterMatiere(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelMatiere.Matieres.ajouterMatiere(req)
+				const data = await modelMatiere.Matieres.ajouterMatiere(req)
+			
+				if(data){
+					
+					res.redirect("/matieres");
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/matieres");
+			}catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/matieres");
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de supprimer une matière
 	async supprimerMatiere(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelMatiere.Matieres.supprimerMatiere(req)
+				const data = await modelMatiere.Matieres.supprimerMatiere(req)
+			
+				if(data){
+					
+					res.redirect("/matieres");
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/matieres");
+			} catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/matieres");
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	},
 
+	//Fonction pour le principal : permet de modifier une matière
 	async modifierMatiere(req, res){
 
-		try {
+		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
+		if(req.cookies.role == "Principal"){
+			
+			try{
 
-			const data = await modelMatiere.Matieres.modifierMatiere(req)
+				const data = await modelMatiere.Matieres.modifierMatiere(req)
+			
+				if(data){
+					
+					res.redirect("/matieres");
+				
+				}else{
 
-			if(data){
+					res.render("probleme", {cookie:req.cookies.role})
+				}
 
-				res.redirect("/matieres");
+			}catch(error){
 
-			}else{
-
-				console.log("champs incorrects")
-				res.redirect("/matieres/modifierMatiere/" + req.params.id);
+				console.log(error)
 			}
+		
+		}else{
 
-		} catch (error) {
+			try{
 
-			console.log(error)
+				res.render("refus")
+
+            }catch(error){
+
+                console.log(error)
+            }
 		}
 	}
 }
