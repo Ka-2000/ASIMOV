@@ -40,6 +40,28 @@ const Accueil = {
 
             })
         })
+    },
+
+    async connexion2(req){
+
+        let matricule = req.body.matricule
+        let motdepasse = req.body.mdp
+        let requeteSQL = "SELECT * FROM eleve WHERE eleve_Nom = ? AND eleve_Mdp = password(?)"
+
+        return new Promise((resolve, reject) => {
+
+            mysqlconnexion.query(requeteSQL, [matricule, motdepasse],(err, lignes) => {
+
+                if(err){
+
+                    return reject(err)
+
+                }
+                
+                return resolve(lignes)
+
+            })
+        })
     }
 }
 

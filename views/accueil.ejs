@@ -12,8 +12,10 @@
 
     <% if(cookie == 'Principal'){%>
         <%- include('headerPrincipal') %>
-    <% }else{ %>
+    <% }else if(cookie == 'Professeur'){ %>
         <%- include('headerProfesseur') %>
+    <% }else{ %>
+        <%- include('headerEleve') %>
     <% } %>
  
 </body>

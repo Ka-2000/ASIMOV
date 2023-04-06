@@ -9,6 +9,7 @@ const controllerMain = {
 		try{
 
 			const data = await modelAccueil.Accueil.connexion(req)
+			const data2 = await modelAccueil.Accueil.connexion2(req)
 			let messageErreur = ""
 			
 			if(data[0] != undefined){
@@ -17,6 +18,12 @@ const controllerMain = {
 				res.cookie('id', data[0].professeur_Id)
 				res.render("accueil", {dataProfesseur:data[0], cookie:data[0].professeur_Role})
 			
+			}else if(data2[0] != undefined){
+
+				res.cookie('role', 'Eleve')
+				res.cookie('id', data2[0].eleve_Id)
+				res.render("accueil", {dataEleve:data2[0], cookie:'Eleve', id:data2[0].eleve_Id})
+
 			}else{
 
 				messageErreur = "Le matricule ou le mot de passe est incorrect."

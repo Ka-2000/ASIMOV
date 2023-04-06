@@ -46,6 +46,19 @@ const controllerClasse = {
 		}
 	},
 
+	async redirectionNoteEleve(req, res){
+
+		if(req.cookies.role == "Eleve"){
+
+			res.redirect("/notes/notesEleve/" + req.cookies.id);
+
+		}else{
+
+			res.render("refus")
+		}
+	},
+
+
 	//Fonction pour le principal ou professeur : permet d'afficher une note en particulier
 	//Le principal peut afficher n'importe quelle note
 	//Le professeur ne peut afficher de notes que dans sa matière
