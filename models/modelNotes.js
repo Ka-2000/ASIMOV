@@ -23,11 +23,33 @@ const Notes = {
     async afficherNotesEleve(req, res){
 
         let id = req.params.id
-        let requeteSQL = "SELECT Matiere.matiere_Nom, Note.note_Id, Note.note_Valeur FROM Eleve INNER JOIN Note ON Eleve.eleve_Id = Note.note_IdEleve INNER JOIN Matiere ON Note.note_IdMatiere = Matiere.matiere_Id WHERE Eleve.eleve_Id = ? "
+        let requeteSQL = "SELECT Matiere.matiere_Nom, Note.note_Id, Note.note_Valeur FROM Eleve INNER JOIN Note ON Eleve.eleve_Id = Note.note_IdEleve INNER JOIN Matiere ON Note.note_IdMatiere = Matiere.matiere_Id WHERE Eleve.eleve_Id = ? ORDER BY matiere_Nom"
         
         //On initialise un cookie pour pouvoir savoir vers quel élève rediriger dans le controller
         res.cookie('idEleve', id)
 
+        return new Promise((resolve, reject) => {
+
+            mysqlconnexion.query(requeteSQL, [id], (error, elements) => {
+
+                if (error) {
+
+                    return reject(error)
+
+                }
+
+                return resolve(elements)
+
+            })
+        })
+    },
+
+    //Fonction pour tous les utilisateurs : permet d'afficher la moyenne générale d'un élève
+    async moyenneGenerale(req){
+
+        let id = req.params.id
+        let requeteSQL = "SELECT AVG(note_Valeur) AS moyenne_generale FROM note WHERE note_IdEleve = ?"
+        
         return new Promise((resolve, reject) => {
 
             mysqlconnexion.query(requeteSQL, [id], (error, elements) => {

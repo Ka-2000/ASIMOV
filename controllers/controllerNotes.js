@@ -18,10 +18,12 @@ const controllerClasse = {
 
 				const data1 = await modelNote.Notes.afficherNotesEleve(req, res)
 				const data2 = await modelMatiere.Matieres.afficherMatieres()
+				const data3 = await modelNote.Notes.moyenneGenerale(req)
+				const data4 = await modelMatiere.Matieres.afficherMatiereProfesseur(req)
 
 				if(data1){
 					
-					res.render("notes", {dataNotes:data1, dataMatieres:data2, cookie:req.cookies.role, idEleve:req.cookies.idEleve})
+					res.render("notes", {dataNotes:data1, dataMatieres:data2, dataMoyenne:data3, dataMatieres2:data4, cookie:req.cookies.role, idEleve:req.cookies.idEleve})
 				
 				}else{
 
@@ -104,7 +106,7 @@ const controllerClasse = {
 	async ajouterNote(req, res){
 
 		//Sécurité au niveau du serveur : si token principal renvoit les données, sinon renvoit sur une page de refus
-		if(req.cookies.role == "Principal"){
+		if(req.cookies.role == "Principal" || req.cookies.role == "Professeur"){
 			
 			try{
 

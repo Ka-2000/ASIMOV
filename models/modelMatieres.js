@@ -41,6 +41,29 @@ const Matieres = {
 
     },
 
+    //Fonction pour le proviseur : permet d'afficher chaque matière avec le professeur qui l'enseigne
+    async afficherMatiereProfesseur(req){
+
+        let idProf = req.cookies.id
+        let requeteSQL = "SELECT * FROM matiere WHERE matiere_IdProfesseur = ?"
+
+        return new Promise((resolve, reject) => {
+
+            mysqlconnexion.query(requeteSQL, [idProf], (error, elements) => {
+
+                if (error) {
+
+                    return reject(error)
+
+                }
+
+                return resolve(elements)
+
+            })
+        })
+
+    },
+
     //Fonction pour le proviseur : permet d'afficher une matière en particulier
     async afficherUneMatiere(req) {
 

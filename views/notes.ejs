@@ -64,30 +64,32 @@
 
     <table>
 
-        <thead>
+      <thead>
 
-            <tr>
-            <th>Note</th>
-            <th>Matière</th>
-            <th>Modification</th>
-            <th>Suppression</th>
-            
-            </tr>
+          <tr>
+          <th>Note</th>
+          <th>Matière</th>
+          <% if(cookie == "Principal" || cookie == "Professeur"){ %>
+          <th>Modification</th>
+          <th>Suppression</th>
+          <% } %>
+          
+          </tr>
 
-        </thead>
+      </thead>
 
       <tbody>
 
         <% dataNotes.forEach(function(data){ %>
 
           <tr>
-
             <td> <%= data.note_Valeur %> </td>
             <td> <%= data.matiere_Nom %> </td>
-     
-            <td><a href="http://localhost:3600/notes/modifierNote/<%=data.note_Id%>"> Modifier </a></td>
-            <td><a href="http://localhost:3600/notes/supprimerNote/<%=data.note_Id%>"> Supprimer </a></td>
             
+            <% if(cookie == "Principal" || cookie == "Professeur"){ %>
+              <td><a href="http://localhost:3600/notes/modifierNote/<%=data.note_Id%>"> Modifier </a></td>
+              <td><a href="http://localhost:3600/notes/supprimerNote/<%=data.note_Id%>"> Supprimer </a></td>
+            <% } %>
           </tr>
 
         <% })%>
@@ -95,6 +97,12 @@
       </tbody>
 
     </table>
+
+    <div id = 'ajout'>
+      
+      Moyenne Générale : <%= dataMoyenne[0].moyenne_generale %> 
+      
+    </div>
 
   </div>
 
@@ -110,12 +118,24 @@
         <label for = "matiere", style="margin-right: 10px;">Matière:</label>
         <select type = "text" name = "matiere" id = "matiere" value = "", style="margin-right: 10px;">
 
-          <% dataMatieres.forEach(function(data){ %>
+          <% if(cookie == "Principal"){ %>
 
-            <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
+            <% dataMatieres.forEach(function(data){ %>
 
-          <% }) %>
+              <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
 
+            <% }) %>
+
+          <% }else{ %>
+
+            <% dataMatieres2.forEach(function(data){ %>
+
+              <option value = "<%= data.matiere_Id %>"> <%= data.matiere_Nom %> </option>
+
+            <% }) %>
+
+          <% } %>
+        
         </select>
         
         
