@@ -7,16 +7,29 @@
     <title> Accueil </title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <style>
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            padding: 20px;
+            text-align: justify;
+        }
+    </style>
 </head>
 <body>
 
-    <% if(cookie == 'Principal'){%>
-        <%- include('headerPrincipal') %>
-    <% }else if(cookie == 'Professeur'){ %>
-        <%- include('headerProfesseur') %>
-    <% }else{ %>
-        <%- include('headerEleve') %>
-    <% } %>
+    <div>
+        <% if(cookie == 'Principal'){%>
+            <%- include('headerPrincipal') %>
+        <% }else if(cookie == 'Professeur'){ %>
+            <%- include('headerProfesseur') %>
+        <% }else{ %>
+            <%- include('headerEleve') %>
+        <% } %>
+    </div>
+
+    <p>Bienvenue sur notre plateforme d'apprentissage en ligne. Notre ENT a été conçu pour faciliter votre parcours éducatif, en offrant un accès facile à tous vos cours, devoirs, projets et communications avec vos enseignants et camarades de classe. Avec notre plateforme, vous pouvez suivre votre progression, vérifier votre emploi du temps, télécharger des ressources pédagogiques et bien plus encore, le tout en un seul endroit pratique et accessible depuis n'importe quel appareil connecté à Internet. Nous sommes heureux de vous accompagner tout au long de votre parcours éducatif et de vous aider à atteindre vos objectifs.</p>
  
 </body>
 </html>
