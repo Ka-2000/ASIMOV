@@ -48,7 +48,7 @@ const Notes = {
     async moyenneGenerale(req){
 
         let id = req.params.id
-        let requeteSQL = "SELECT AVG(note_Valeur) AS moyenne_generale FROM note WHERE note_IdEleve = ?"
+        let requeteSQL = "SELECT ROUND(AVG(note_Valeur), 2) AS moyenne_generale FROM note WHERE note_IdEleve = ?"
         
         return new Promise((resolve, reject) => {
 
